@@ -20,8 +20,8 @@
     "@prisma/client": "^5.16.2",
     "dotenv": "^16.4.5",
     "ethers": "^6.13.2",
-    "hardhat": "^2.22.6",
     "next": "14.2.5",
+    "hardhat": "^2.20.1",
     "react": "^18",
     "react-dom": "^18"
   },

@@ -7,7 +7,7 @@ async function main() {
     "RealEstateMarketPlace"
   );
 
-  console.log("Contract address:", await RealEstateMarketPlace.address);
+  console.log("Contract address:", await RealEstateMarketPlace.getAddress());
 }
 //blockchain\contracts\RealEstateMarketPlace.sol
 main()
