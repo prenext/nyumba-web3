@@ -22,7 +22,11 @@ interface GlobalStyles {
 
 export const globalStyles: GlobalStyles = {
   appBar: {
-    padding: "0 20px",
+    padding: "10 20px",
+    backgroundColor: "ffffff10",
+    backdropFilter: "blur(10px)",
+    boxShadow: "1px 1px 1px rgba(0,0,0,0.2)",
+    borderBottom: "1px solid #33333350",
   },
   navLinks: {
     display: "flex",
@@ -39,12 +43,16 @@ export const globalStyles: GlobalStyles = {
   card: {
     padding: "20px",
     borderRadius: "10px",
-    boxShadow: "0px 0px 10px rgba(0,0,0,0.5)",
+    boxShadow: "none",
+    border: "1px solid",
+    borderColor: "primary.main",
   },
   cardContainer: {
     display: "flex",
     justifyContent: "space-around",
     marginTop: "40px",
+    minHeight: "400px",
+    alignItems: "center",
   },
   defiCard: {
     padding: "20px",

@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
-
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
 contract RealEstateMarketPlace is ERC721URIStorage, Ownable, ReentrancyGuard {
     using Counters for Counters.Counter;
     Counters.Counter private _propertyIdCounter;
+    Counters.Counter private _userIdCounter;
 
     enum PropertyStatus {
         Available,
@@ -23,7 +23,14 @@ contract RealEstateMarketPlace is ERC721URIStorage, Ownable, ReentrancyGuard {
         PropertyStatus status;
     }
 
+    struct User {
+        uint256 id;
+        address walletAddress;
+    }
+
     mapping(uint256 => Property) public properties;
+    mapping(address => User) public users; // Maps wallet address to User
+    mapping(uint256 => address) public userAddressById; // Maps user ID to wallet address
 
     event PropertyAdded(
         uint256 propertyId,
@@ -33,8 +40,21 @@ contract RealEstateMarketPlace is ERC721URIStorage, Ownable, ReentrancyGuard {
     );
     event PropertySold(uint256 propertyId, address buyer, uint256 price);
     event PropertyRented(uint256 propertyId, address tenant, uint256 rent);
+    event UserRegistered(uint256 userId, address walletAddress);
 
     constructor() ERC721("RealEstateMarketplace", "REM") {}
+
+    function registerUser() public {
+        require(users[msg.sender].id == 0, "User already registered");
+
+        _userIdCounter.increment();
+        uint256 userId = _userIdCounter.current();
+
+        users[msg.sender] = User({id: userId, walletAddress: msg.sender});
+        userAddressById[userId] = msg.sender;
+
+        emit UserRegistered(userId, msg.sender);
+    }
 
     function addProperty(
         string memory uri,

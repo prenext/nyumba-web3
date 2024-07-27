@@ -1,4 +1,3 @@
-// src/App.tsx
 import React from "react";
 import {
   Container,
@@ -10,36 +9,72 @@ import {
   Card,
   CardContent,
   Grid,
-  Link,
   TextField,
 } from "@mui/material";
 import { globalStyles } from "../lib/styles/global.styles";
+import Image from "next/image";
+import Link from "next/link";
 
 function App() {
   return (
     <div>
-      <AppBar position="static" sx={globalStyles.appBar}>
-        <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            SUSHI
-          </Typography>
+      <AppBar
+        position="sticky"
+        sx={globalStyles.appBar}
+        color="transparent"
+        elevation={0}
+      >
+        <Container
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            maxWidth: "xl",
+            height: "54px",
+          }}
+        >
+          <Image
+            width={100}
+            height={40}
+            src="nyumba-logo.svg"
+            alt="Nyumba Logo"
+          />
           <Box sx={globalStyles.navLinks}>
-            <Button color="inherit">Home</Button>
-            <Button color="inherit">About</Button>
-            <Button color="inherit">Community</Button>
-            <Button color="inherit">Partner</Button>
-            <Button color="inherit">Social</Button>
+            <Link href="/home">
+              <Button variant="text" color="primary">
+                Home
+              </Button>
+            </Link>
+            <Link href="/#properties">
+              <Button variant="text" color="primary">
+                Properties
+              </Button>
+            </Link>
+            <Link href="/#">
+              <Button variant="text" color="primary">
+                How It Works
+              </Button>
+            </Link>
+            <Link href="/login">
+              <Button variant="text" color="primary">
+                Sign In
+              </Button>
+            </Link>
+            <Link href="/signup">
+              <Button variant="contained" size="small" color="primary">
+                Sign Up
+              </Button>
+            </Link>
           </Box>
-        </Toolbar>
+        </Container>
       </AppBar>
       <Container sx={globalStyles.mainContainer}>
         <Typography variant="h2" component="h1" gutterBottom>
-          Be a <span style={{ color: "#00D1FF" }}>DeFi Chef</span> ...with
-          Sushi!
+          Welcome to <span style={{ color: "#00D1FF" }}>Nyumba Web3</span>
         </Typography>
         <Typography variant="h6" component="p" gutterBottom>
-          Swap, earn, stack yields, lend, borrow, leverage all on one
-          decentralized, community-driven platform. Welcome home to DeFi.
+          Buy and sell properties securely and transparently using blockchain
+          technology.
         </Typography>
         <Box>
           <Button
@@ -47,43 +82,43 @@ function App() {
             color="primary"
             sx={{ marginRight: "10px" }}
           >
-            Use App
+            View Properties
           </Button>
           <Button variant="outlined" color="primary">
-            Advance More
+            Learn More
           </Button>
         </Box>
         <Box sx={globalStyles.cardContainer}>
           <Card sx={globalStyles.card}>
             <CardContent>
-              <Typography variant="h5">$1.28</Typography>
-              <Typography>₿SUSHI Price</Typography>
+              <Typography variant="h5">100+</Typography>
+              <Typography>Properties Listed</Typography>
             </CardContent>
           </Card>
           <Card sx={globalStyles.card}>
             <CardContent>
-              <Typography variant="h5">$1.59b</Typography>
-              <Typography>Total Liquidity</Typography>
+              <Typography variant="h5">50+</Typography>
+              <Typography>Countries Covered</Typography>
             </CardContent>
           </Card>
           <Card sx={globalStyles.card}>
             <CardContent>
-              <Typography variant="h5">$222.5b</Typography>
-              <Typography>Total Volume</Typography>
+              <Typography variant="h5">24/7</Typography>
+              <Typography>Support Available</Typography>
             </CardContent>
           </Card>
           <Card sx={globalStyles.card}>
             <CardContent>
-              <Typography variant="h5">14.40k</Typography>
-              <Typography>Total Pairs</Typography>
+              <Typography variant="h5">1,000+</Typography>
+              <Typography>Verified Sellers</Typography>
             </CardContent>
           </Card>
         </Box>
         <Box sx={globalStyles.cardContainer}>
           <Card sx={globalStyles.defiCard}>
             <img
-              src="/path/to/multi-chain-amm-image.png"
-              alt="Multi-chain AMM"
+              src="https://picsum.photos/200/100"
+              alt="Property Listings"
               style={globalStyles.defiCardImage as React.CSSProperties}
             />
             <CardContent>
@@ -92,23 +127,23 @@ function App() {
                 component="div"
                 sx={globalStyles.defiCardTitle}
               >
-                Multi-chain AMM
+                Property Listings
               </Typography>
               <Typography sx={globalStyles.defiCardDescription}>
-                The most competitive rates for DeFi bluechips anywhere. Switch
-                to other chains in one click.
+                Browse a wide range of properties available for sale. Use
+                filters to find your perfect home.
               </Typography>
               <Box sx={globalStyles.defiCardButton}>
                 <Button variant="contained" color="primary">
-                  Enter Exchange
+                  View Listings
                 </Button>
               </Box>
             </CardContent>
           </Card>
           <Card sx={globalStyles.defiCard}>
             <img
-              src="/path/to/kashi-lending-image.png"
-              alt="Kashi Lending"
+              src="https://picsum.photos/200/100"
+              alt="Secure Payments"
               style={globalStyles.defiCardImage as React.CSSProperties}
             />
             <CardContent>
@@ -117,23 +152,23 @@ function App() {
                 component="div"
                 sx={globalStyles.defiCardTitle}
               >
-                Kashi Lending
+                Secure Payments
               </Typography>
               <Typography sx={globalStyles.defiCardDescription}>
-                Isolated lending markets, elastic interest rates. Leverage long
-                or short or create your own market.
+                Make payments securely using blockchain technology. Your
+                transactions are safe with us.
               </Typography>
               <Box sx={globalStyles.defiCardButton}>
                 <Button variant="contained" color="primary">
-                  Enter Kashi
+                  Learn More
                 </Button>
               </Box>
             </CardContent>
           </Card>
           <Card sx={globalStyles.defiCard}>
             <img
-              src="/path/to/xsushi-staking-image.png"
-              alt="xSUSHI Staking"
+              src="https://picsum.photos/200/100"
+              alt="Blockchain Transparency"
               style={globalStyles.defiCardImage as React.CSSProperties}
             />
             <CardContent>
@@ -142,15 +177,15 @@ function App() {
                 component="div"
                 sx={globalStyles.defiCardTitle}
               >
-                xSUSHI Staking
+                Blockchain Transparency
               </Typography>
               <Typography sx={globalStyles.defiCardDescription}>
-                Earn governance rights and 0.05% of all swaps from all chains in
-                one simple place.
+                Enjoy the transparency and trust that blockchain brings to
+                property transactions.
               </Typography>
               <Box sx={globalStyles.defiCardButton}>
                 <Button variant="contained" color="primary">
-                  Enter Sushibar
+                  Discover How
                 </Button>
               </Box>
             </CardContent>
@@ -159,16 +194,16 @@ function App() {
         {/* Evolving Community Section */}
         <Box sx={globalStyles.evolvingCommunitySection}>
           <Typography variant="h4" gutterBottom>
-            An evolving community for an evolving DeFi landscape
+            Join a growing community of blockchain property enthusiasts
           </Typography>
           <Grid container spacing={2} justifyContent="center">
             <Grid item>
               <Card sx={globalStyles.evolvingCommunityCard}>
                 <CardContent>
                   <Typography variant="h6" component="div">
-                    22+
+                    20,000+
                   </Typography>
-                  <Typography>Wallets Supported</Typography>
+                  <Typography>Happy Users</Typography>
                 </CardContent>
               </Card>
             </Grid>
@@ -176,9 +211,9 @@ function App() {
               <Card sx={globalStyles.evolvingCommunityCard}>
                 <CardContent>
                   <Typography variant="h6" component="div">
-                    14
+                    50+
                   </Typography>
-                  <Typography>Chains Supported</Typography>
+                  <Typography>Countries Covered</Typography>
                 </CardContent>
               </Card>
             </Grid>
@@ -186,9 +221,9 @@ function App() {
               <Card sx={globalStyles.evolvingCommunityCard}>
                 <CardContent>
                   <Typography variant="h6" component="div">
-                    150k+
+                    1000+
                   </Typography>
-                  <Typography>Sushi Holders</Typography>
+                  <Typography>Verified Properties</Typography>
                 </CardContent>
               </Card>
             </Grid>
@@ -197,22 +232,22 @@ function App() {
         {/* Partners Section */}
         <Box sx={globalStyles.partnersSection}>
           <Typography variant="h4" gutterBottom>
-            Meet the partners helping us cook up the tastiest dishes in DeFi.
+            Our Trusted Partners
           </Typography>
           <Grid container spacing={2} justifyContent="center">
             <Grid item>
               <Card sx={globalStyles.partnerCard}>
                 <CardContent>
                   <Typography variant="h6" component="div">
-                    Pickle Finance
+                    Property Partner 1
                   </Typography>
                   <Typography>
-                    Pickle helps users grow their holdings via automated yield
-                    farming strategies.
+                    Partner 1 helps streamline property transactions with their
+                    innovative solutions.
                   </Typography>
                   <Box sx={{ textAlign: "center" }}>
                     <Button variant="contained" color="primary">
-                      Open Web
+                      Visit Partner
                     </Button>
                   </Box>
                 </CardContent>
@@ -222,15 +257,15 @@ function App() {
               <Card sx={globalStyles.partnerCard}>
                 <CardContent>
                   <Typography variant="h6" component="div">
-                    Aave
+                    Property Partner 2
                   </Typography>
                   <Typography>
-                    Aave is an open source and non-custodial liquidity protocol
-                    for earning interest on deposits and borrowing assets.
+                    Partner 2 provides secure and efficient blockchain solutions
+                    for real estate.
                   </Typography>
                   <Box sx={{ textAlign: "center" }}>
                     <Button variant="contained" color="primary">
-                      Open Web
+                      Visit Partner
                     </Button>
                   </Box>
                 </CardContent>
@@ -240,34 +275,15 @@ function App() {
               <Card sx={globalStyles.partnerCard}>
                 <CardContent>
                   <Typography variant="h6" component="div">
-                    Akropolis
+                    Property Partner 3
                   </Typography>
                   <Typography>
-                    Akropolis aims to provide the infrastructure for the next
-                    generation of decentralized financial services.
+                    Partner 3 offers a platform for transparent and efficient
+                    property listings.
                   </Typography>
                   <Box sx={{ textAlign: "center" }}>
                     <Button variant="contained" color="primary">
-                      Open Web
-                    </Button>
-                  </Box>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid item>
-              <Card sx={globalStyles.partnerCard}>
-                <CardContent>
-                  <Typography variant="h6" component="div">
-                    Keep3r Network
-                  </Typography>
-                  <Typography>
-                    Keep3r Network is a decentralized keeper network for
-                    projects that need external developers and for external
-                    teams to find keeper jobs.
-                  </Typography>
-                  <Box sx={{ textAlign: "center" }}>
-                    <Button variant="contained" color="primary">
-                      Open Web
+                      Visit Partner
                     </Button>
                   </Box>
                 </CardContent>
@@ -278,11 +294,11 @@ function App() {
         {/* Footer */}
         <Box sx={globalStyles.footer}>
           <Box sx={globalStyles.footerTop}>
-            <Typography variant="h6">sushi</Typography>
+            <Typography variant="h6">Nyumba Web3</Typography>
             <Box>
-              <Typography>PRODUCTS</Typography>
+              <Typography>PROPERTIES</Typography>
               <Typography>SUPPORT</Typography>
-              <Typography>PROTOCOL</Typography>
+              <Typography>ABOUT</Typography>
             </Box>
           </Box>
           <Box sx={globalStyles.footerBottom}>
