@@ -26,7 +26,7 @@ function Copyright(props: any) {
     >
       {"Copyright © "}
       <Link color="inherit" href="/">
-        Nyumba web3
+        Nyumba Blockchain
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
