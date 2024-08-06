@@ -1,12 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import {
@@ -15,24 +12,8 @@ import {
   addWalletListener,
   disconnectWallet,
 } from "@/app/lib/utils/web3.utils";
-
-function Copyright(props: any) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="/">
-        Nyumba web3
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import { signUpUser } from "../action";
+import { useFormState } from "react-dom";
 
 export default function SignUp() {
   const [walletAddress, setWalletAddress] = useState<string>("");
@@ -42,7 +23,9 @@ export default function SignUp() {
     lastName: "",
     email: "",
   });
+
   const [error, setError] = useState<string>("");
+  const [state, formAction] = useFormState(signUpUser, null);
 
   useEffect(() => {
     getCurrentWalletConnected(setWalletAddress, setWalletBalance);
@@ -75,27 +58,12 @@ export default function SignUp() {
     <Container component="main" maxWidth="xs">
       <Box
         sx={{
-          marginTop: 5,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign up
-        </Typography>
-        <Typography
-          component="p"
-          variant="body1"
-          sx={{ mt: 2, mb: 1, textAlign: "center" }}
-        >
-          To sign up, you will need to enter your details and connect a web3
-          wallet.
-        </Typography>
-        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+        <Box component="form" noValidate sx={{ mt: 3 }} action={formAction}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -203,16 +171,8 @@ export default function SignUp() {
           >
             Sign Up
           </Button>
-          <Grid container justifyContent="flex-end">
-            <Grid item>
-              <Link href="/login" variant="body2">
-                Already have an account? Log in
-              </Link>
-            </Grid>
-          </Grid>
         </Box>
       </Box>
-      <Copyright sx={{ mt: 5 }} />
     </Container>
   );
 }

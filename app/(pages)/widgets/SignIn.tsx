@@ -1,11 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import {
@@ -39,21 +35,11 @@ const SignIn: React.FC = () => {
     <Container component="main" maxWidth="xs">
       <Box
         sx={{
-          marginTop: 8,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <Typography component="p" variant="body1" sx={{ mt: 2, mb: 1 }}>
-          Please connect a Web3 wallet to continue
-        </Typography>
         <Box component="form" onSubmit={handleSignIn} noValidate sx={{ mt: 1 }}>
           {!walletAddress ? (
             <Button
@@ -81,7 +67,9 @@ const SignIn: React.FC = () => {
                 fullWidth
                 variant="outlined"
                 sx={{ mt: 3, mb: 2 }}
-                onClick={() => disconnectWallet(setWalletAddress, setWalletBalance)}
+                onClick={() =>
+                  disconnectWallet(setWalletAddress, setWalletBalance)
+                }
               >
                 Disconnect
               </Button>
@@ -103,18 +91,6 @@ const SignIn: React.FC = () => {
             Sign In
           </Button>
         </Box>
-        <Grid container>
-          <Grid item xs>
-            <Link href="#" variant="body2">
-              Recovery
-            </Link>
-          </Grid>
-          <Grid item>
-            <Link href="/signup" variant="body2">
-              {"Don't have an account? Sign Up"}
-            </Link>
-          </Grid>
-        </Grid>
       </Box>
     </Container>
   );

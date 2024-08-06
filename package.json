@@ -20,8 +20,8 @@
     "@prisma/client": "^5.16.2",
     "dotenv": "^16.4.5",
     "ethers": "^6.13.2",
-    "next": "14.2.5",
     "hardhat": "^2.20.1",
+    "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18"
   },
@@ -33,6 +33,7 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
+    "prisma": "^5.17.0",
     "typescript": "^5"
   }
 }

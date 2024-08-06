@@ -2,7 +2,6 @@ import React from "react";
 import {
   Container,
   AppBar,
-  Toolbar,
   Typography,
   Box,
   Button,
@@ -14,10 +13,12 @@ import {
 import { globalStyles } from "../lib/styles/global.styles";
 import Image from "next/image";
 import Link from "next/link";
+import ScrollDialog from "./widgets/Modal";
 
 function App() {
   return (
     <div>
+      <ScrollDialog isOpen initialPage="sign-in" />
       <AppBar
         position="sticky"
         sx={globalStyles.appBar}
