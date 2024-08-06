@@ -46,7 +46,7 @@ function App() {
                 Home
               </Button>
             </Link>
-            <Link href="/#properties">
+            <Link href="/properties">
               <Button variant="text" color="primary">
                 Properties
               </Button>
@@ -71,7 +71,7 @@ function App() {
       </AppBar>
       <Container sx={globalStyles.mainContainer}>
         <Typography variant="h2" component="h1" gutterBottom>
-          Welcome to <span style={{ color: "#00D1FF" }}>Nyumba Web3</span>
+          Welcome to <span style={{ color: "#00D1FF" }}>Nyumba Blockchain</span>
         </Typography>
         <Typography variant="h6" component="p" gutterBottom>
           Buy and sell properties securely and transparently using blockchain
@@ -295,7 +295,7 @@ function App() {
         {/* Footer */}
         <Box sx={globalStyles.footer}>
           <Box sx={globalStyles.footerTop}>
-            <Typography variant="h6">Nyumba Web3</Typography>
+            <Typography variant="h6">Nyumba Blockchain</Typography>
             <Box>
               <Typography>PROPERTIES</Typography>
               <Typography>SUPPORT</Typography>
