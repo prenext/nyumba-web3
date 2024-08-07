@@ -1,4 +1,4 @@
-import { globalStyles } from '@/app/lib/styles/global.styles';
+import { globalStyles } from '@/lib/styles/global.styles';
 import { Box, Typography, TextField, Button } from '@mui/material';
 import React from 'react';
 

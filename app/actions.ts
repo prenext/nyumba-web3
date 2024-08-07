@@ -1,18 +1,24 @@
 "use server";
+import { DATABASE_NAME } from "@/lib/config";
 import client from "@/lib/mongodb";
+import { getCookie } from "@/lib/utils/cookies.util";
 
-export async function testDatabaseConnection() {
-  let isConnected = false;
+export async function getCurrentUser() {
   try {
-    const mongoClient = await client.connect();
-    // Send a ping to confirm a successful connection
-    await mongoClient.db("admin").command({ ping: 1 });
-    console.log(
-      "Pinged your deployment. You successfully connected to MongoDB!",
-    ); // because this is a server action, the console.log will be outputted to your terminal not in the browser
-    return !isConnected;
-  } catch (e) {
-    console.error(e);
-    return isConnected;
+    const userAddress: { name: string; value: string } | any = await getCookie(
+      "wallet-address"
+    );
+    console.log("userAddress:", userAddress);
+    await client.connect();
+    const user = await client
+      .db(DATABASE_NAME)
+      .collection("users")
+      .findOne(
+        { walletAddress: userAddress.value },
+        { projection: { _id: 0, walletAddress: 1, firstName: 1, lastName: 1 } }
+      );
+    return user;
+  } finally {
+    await client.close();
   }
 }

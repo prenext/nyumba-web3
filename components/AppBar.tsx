@@ -7,18 +7,20 @@ import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
 import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import { Toolbar } from "@mui/material";
+import { Avatar, Toolbar } from "@mui/material";
+import DropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 const drawerWidth: number = 240;
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
   toggleDrawer: () => void;
+  user?: any;
 }
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
-})<AppBarProps>(({ theme, open }) => ({
+})<AppBarProps>(({ theme, open, user }) => ({
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(["width", "margin"], {
     easing: theme.transitions.easing.sharp,
@@ -34,7 +36,7 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-export default function CustomAppBar({ open, toggleDrawer }: AppBarProps) {
+export default function CustomAppBar({ open, toggleDrawer, user }: AppBarProps) {
   return (
     <AppBar
       position="absolute"
@@ -77,9 +79,12 @@ export default function CustomAppBar({ open, toggleDrawer }: AppBarProps) {
           Dashboard
         </Typography>
         <IconButton color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <NotificationsIcon />
-          </Badge>
+          <Avatar
+            alt={user?.firstName}
+            src={user?.avatar}
+            sx={{ width: 32, height: 32 }}
+          />
+          <DropDownIcon />
         </IconButton>
       </Toolbar>
     </AppBar>

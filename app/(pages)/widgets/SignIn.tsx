@@ -13,6 +13,7 @@ import {
 import { useFormState } from "react-dom";
 import { signInUser } from "../action";
 import SubmitButton from "./SubmitButton";
+import { toast } from "react-toastify";
 
 const SignIn: React.FC = () => {
   const [walletAddress, setWalletAddress] = useState<string>("");
@@ -26,11 +27,14 @@ const SignIn: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    console.log("User signed in successfully");
+    if (state?.type === "error") {
+      setError(state?.message);
+      toast.error(state?.message);
+    }
   }, [state]);
 
   return (
-    <Container component="main" maxWidth="sm">
+    <Container component="main" maxWidth="xs">
       <Box
         sx={{
           display: "flex",

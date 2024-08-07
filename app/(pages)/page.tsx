@@ -12,19 +12,26 @@ import {
   Stack,
 } from "@mui/material";
 import { globalStyles } from "@/lib/styles/global.styles";
-import Image from "next/image";
-import Link from "next/link";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ScrollDialog from "./widgets/Modal";
 
+function App({
+  searchParams: { showAuthDialog, initialPage },
+}: {
+  searchParams: {
+    showAuthDialog: string;
+    initialPage: string;
+  };
+}) {
+  const isOpen = showAuthDialog === "true" ? true : false;
 
-function App() {
   return (
     <div>
-    
+      <ScrollDialog isOpen={isOpen} initialPage={initialPage} />
       <Container sx={globalStyles.mainContainer}>
         <Typography variant="h2" component="h1" gutterBottom>
           Welcome to <span style={{ color: "#00D1FF" }}>Nyumba Blockchain</span>
@@ -33,11 +40,6 @@ function App() {
           Buy and sell properties securely and transparently using blockchain
           technology.
         </Typography>
-
-       
-        
-        
-
         <Box>
           <Button
             variant="contained"
@@ -54,23 +56,32 @@ function App() {
           >
             <Container maxWidth="md">
               <Typography variant="h4" gutterBottom>
-                We’re not just another design studio.
+                We&apos;re not just another design studio.
               </Typography>
               <Typography variant="h6" gutterBottom>
                 Our team is dedicated to creating user-centered designs that not
                 only look great, but also drive results. We understand that in
-                today’s digital age, user experience is everything.
+                today&apos;s digital age, user experience is everything.
               </Typography>
               <Typography variant="body1" gutterBottom>
-                That’s why our approach to design is centered around
+                That&apos;s why our approach to design is centered around
                 understanding the needs and behaviors of your target audience.
                 So why settle for an average design when you can have one that
                 truly stands out with us.
               </Typography>
               <Stack direction="row" spacing={2} alignItems="center" mt={2}>
-                <Avatar src="https://i.pinimg.com/564x/5e/10/e2/5e10e28f86f6ea191062bb924e1b4f40.jpg" alt="Avatar 1" />
-                <Avatar src="https://i.pinimg.com/564x/f6/72/97/f67297871c55069e0632b31d56d4bc39.jpg" alt="Avatar 2" />
-                <Avatar src="https://i.pinimg.com/564x/34/53/60/345360f8c818beb8c85b3b453ea030ee.jpg" alt="Avatar 3" />
+                <Avatar
+                  src="https://i.pinimg.com/564x/5e/10/e2/5e10e28f86f6ea191062bb924e1b4f40.jpg"
+                  alt="Avatar 1"
+                />
+                <Avatar
+                  src="https://i.pinimg.com/564x/f6/72/97/f67297871c55069e0632b31d56d4bc39.jpg"
+                  alt="Avatar 2"
+                />
+                <Avatar
+                  src="https://i.pinimg.com/564x/34/53/60/345360f8c818beb8c85b3b453ea030ee.jpg"
+                  alt="Avatar 3"
+                />
                 <Button variant="contained" color="success">
                   Your Success Allies!
                 </Button>
@@ -298,7 +309,7 @@ function App() {
                 color="success"
                 endIcon={<ArrowForwardIcon />}
               >
-                Let’s talk
+                Let&apos;s talk
               </Button>
             </Box>
           </Box>

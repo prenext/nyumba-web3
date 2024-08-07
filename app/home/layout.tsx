@@ -3,24 +3,31 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Sidebar from "@/components/SideBar";
 import AppBar from "@/components/AppBar";
+import { getCurrentUser } from "../actions";
 
 export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-
   // State to manage the sidebar open/close state
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
   };
 
+  const [user, setUser] = React.useState(null);
+
+  React.useEffect(() => {
+    const currentUser: any = getCurrentUser();
+    setUser(currentUser);
+  }, []);
+
   return (
     <>
       <Box sx={{ display: "flex" }}>
-        <AppBar open={open} toggleDrawer={toggleDrawer} />
-        <Sidebar open={open} toggleDrawer={toggleDrawer} />
+        <AppBar user={user} open={open} toggleDrawer={toggleDrawer} />
+        <Sidebar user={user} open={open} toggleDrawer={toggleDrawer} />
         <Box
           component="main"
           sx={{

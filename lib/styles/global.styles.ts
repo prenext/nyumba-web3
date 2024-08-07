@@ -23,10 +23,11 @@ interface GlobalStyles {
 export const globalStyles: GlobalStyles = {
   appBar: {
     padding: "10 20px",
-    backgroundColor: "ffffff10",
+    background: "none",
+    backgroundColor: "fffffff0",
     backdropFilter: "blur(10px)",
-    boxShadow: "1px 1px 1px rgba(0,0,0,0.2)",
-    borderBottom: "1px solid #33333350",
+    boxShadow: "1px 1px 1px rgba(0,0,0,0.1)",
+    // borderBottom: "1px solid #33333310",
   },
   navLinks: {
     display: "flex",

@@ -30,8 +30,12 @@ export default function SignUp() {
   }, []);
 
   useEffect(() => {
-    toast.success("User signed up successfully");
-    console.log("User signed up successfully");
+    if (state?.type === "error") {
+      setError(state?.message);
+      toast.error(state?.message);
+    } else if (state?.type === "success") {
+      toast.success("Account created successfully");
+    }
   }, [state]);
 
   return (
@@ -43,13 +47,13 @@ export default function SignUp() {
           alignItems: "center",
         }}
       >
-        <Box component="form" noValidate sx={{ mt: 3 }} action={formAction}>
+        <Box component="form" sx={{ mt: 3 }} action={formAction}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
                 autoComplete="given-name"
                 name="firstName"
-                required
+                required={true}
                 fullWidth
                 size="small"
                 id="firstName"
@@ -59,7 +63,7 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
-                required
+                required={true}
                 fullWidth
                 size="small"
                 id="lastName"
@@ -70,7 +74,7 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                required
+                required={true}
                 fullWidth
                 id="email"
                 size="small"

@@ -12,12 +12,15 @@ import {
   mainListItems,
   secondaryListItems,
 } from "@/app/home/widgets/listItems";
-
+import Link from "next/link";
+import Image from "next/image";
+import { Avatar, Typography } from "@mui/material";
 const drawerWidth: number = 240;
 
 interface DrawerProps {
   open: boolean;
   toggleDrawer: () => void;
+  user: any;
 }
 
 const Drawer = styled(MuiDrawer, {
@@ -46,17 +49,26 @@ const Drawer = styled(MuiDrawer, {
   },
 }));
 
-export default function Sidebar({ open, toggleDrawer }: DrawerProps) {
+export default function Sidebar({ open, toggleDrawer, user }: DrawerProps) {
   return (
     <Drawer variant="permanent" open={open}>
       <Toolbar
         sx={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "flex-end",
+          justifyContent: "space-between",
+          p: "8px",
           px: [1],
         }}
       >
+        <Link href="/">
+          <Image
+            width={100}
+            height={40}
+            src="nyumba-logo.svg"
+            alt="Nyumba Logo"
+          />
+        </Link>
         <IconButton onClick={toggleDrawer}>
           <ChevronLeftIcon />
         </IconButton>
