@@ -1,100 +1,66 @@
 import React from "react";
-import {
-  Box,
-  Typography,
-  Card,
-  CardContent,
-  Container,
-  Grid,
-  Avatar,
-} from "@mui/material";
-import HomeIcon from "@mui/icons-material/Home";
-import ApartmentIcon from "@mui/icons-material/Apartment";
-import LandscapeIcon from "@mui/icons-material/Landscape";
-import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
+import { Box, Container, Grid, Typography } from "@mui/material";
 
-interface Service {
-  name: string;
+interface ContentItem {
+  title: string;
   description: string;
-  icon: React.ReactNode;
+  image: string;
 }
 
-const services: Service[] = [
+const content = [
   {
-    name: "Buy Land",
-    description: "Purchase plots of land for residential or commercial use.",
-    icon: <LandscapeIcon sx={{ fontSize: 40 }} />,
+    title: "Buy Land",
+    description: "Our platform allows you to buy land easily and securely.",
+    image: "https://via.placeholder.com/400x300",
   },
   {
-    name: "Real Estate",
-    description: "Invest in residential and commercial properties.",
-    icon: <HomeIcon sx={{ fontSize: 40 }} />,
+    title: "Real Estate",
+    description: "Explore various real estate options available for purchase.",
+    image: "https://via.placeholder.com/400x300",
   },
   {
-    name: "Lease Land",
-    description: "Lease land for farming, industrial, or residential purposes.",
-    icon: <BusinessCenterIcon sx={{ fontSize: 40 }} />,
+    title: "Lease Land",
+    description: "Lease land with flexible terms that suit your needs.",
+    image: "https://via.placeholder.com/400x300",
   },
   {
-    name: "Rent Houses",
-    description: "Find houses and apartments for rent.",
-    icon: <ApartmentIcon sx={{ fontSize: 40 }} />,
+    title: "Rent Houses",
+    description: "Find houses available for rent in different locations.",
+    image: "https://via.placeholder.com/400x300",
   },
 ];
 
-const ServiceCard: React.FC<{ service: Service }> = ({ service }) => (
-  <Card
-    sx={{
-      marginBottom: 4,
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      padding: 2,
-    }}
-  >
-    <Avatar
-      sx={{ bgcolor: "primary.main", width: 60, height: 60, marginBottom: 2 }}
-    >
-      {service.icon}
-    </Avatar>
-    <CardContent sx={{ textAlign: "center" }}>
-      <Typography variant="h6" component="div" gutterBottom>
-        {service.name}
-      </Typography>
-      <Typography variant="body2" color="text.secondary">
-        {service.description}
-      </Typography>
-    </CardContent>
-  </Card>
-);
-
-const ServicesSection: React.FC = () => (
+const TwoSidedLayout: React.FC = () => (
   <Box sx={{ paddingY: 4, paddingX: 2 }}>
-    <Container maxWidth="md">
-      <Typography variant="h4" gutterBottom>
-        Our Services
-      </Typography>
-      <Typography variant="body1" gutterBottom>
-        Explore the range of services we offer to help you buy, sell, lease, or
-        rent properties.
-      </Typography>
-      <Grid container spacing={4} justifyContent="center">
-        {services.map((service, index) => (
-          <Grid item xs={12} sm={6} md={3} key={index}>
-            <ServiceCard service={service} />
+    <Container maxWidth="xl">
+      {content.map((item, index) => (
+        <Grid
+          container
+          spacing={4}
+          key={index}
+          direction={index % 2 === 0 ? "row" : "row-reverse"}
+          alignItems="center"
+          sx={{ marginBottom: 4, my: 10 }}
+        >
+          <Grid item xs={12} md={6}>
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
+              <img
+                src={item.image}
+                alt={item.title}
+                style={{ maxWidth: "100%", height: "auto" }}
+              />
+            </Box>
           </Grid>
-        ))}
-      </Grid>
+          <Grid item xs={12} md={6}>
+            <Typography variant="h4" gutterBottom>
+              {item.title}
+            </Typography>
+            <Typography variant="body1">{item.description}</Typography>
+          </Grid>
+        </Grid>
+      ))}
     </Container>
   </Box>
 );
 
-function PropertiesPage() {
-  return (
-    <div>
-      <ServicesSection />
-    </div>
-  );
-}
-
-export default PropertiesPage;
+export default TwoSidedLayout;
