@@ -59,8 +59,6 @@ const AccountPage = async () => {
           sx={{ marginBottom: 2 }}
         ></TextField>
         <UserDataForm user={user} />
-
-        {/* <Typography variant="h5">Contact Details</Typography> */}
       </Box>
     </Container>
   );
