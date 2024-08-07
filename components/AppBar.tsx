@@ -9,6 +9,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Avatar, Toolbar } from "@mui/material";
 import DropDownIcon from "@mui/icons-material/ArrowDropDown";
+import Link from "next/link";
 
 const drawerWidth: number = 240;
 
@@ -36,7 +37,11 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-export default function CustomAppBar({ open, toggleDrawer, user }: AppBarProps) {
+export default function CustomAppBar({
+  open,
+  toggleDrawer,
+  user,
+}: AppBarProps) {
   return (
     <AppBar
       position="absolute"
@@ -78,14 +83,18 @@ export default function CustomAppBar({ open, toggleDrawer, user }: AppBarProps) 
         >
           Dashboard
         </Typography>
-        <IconButton color="inherit">
-          <Avatar
-            alt={user?.firstName}
-            src={user?.avatar}
-            sx={{ width: 32, height: 32 }}
-          />
-          <DropDownIcon />
-        </IconButton>
+        <Typography>
+          $200.00
+        </Typography>
+        <Link href="/home/account">
+          <IconButton color="inherit">
+            <Avatar
+              alt={user?.firstName}
+              src={user?.avatar}
+              sx={{ width: 32, height: 32 }}
+            />
+          </IconButton>
+        </Link>
       </Toolbar>
     </AppBar>
   );

@@ -61,7 +61,7 @@ export default function Sidebar({ open, toggleDrawer, user }: DrawerProps) {
           px: [1],
         }}
       >
-        <Link href="/">
+        <Link href="/" style={{ margin: "auto", marginLeft: "10px" }}>
           <Image
             width={100}
             height={40}
@@ -77,7 +77,7 @@ export default function Sidebar({ open, toggleDrawer, user }: DrawerProps) {
       <List component="nav">
         {mainListItems}
         <Divider sx={{ my: 1 }} />
-        {/* {secondaryListItems} */}
+        {secondaryListItems}
       </List>
     </Drawer>
   );

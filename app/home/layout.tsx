@@ -19,9 +19,13 @@ export default function DashboardLayout({
   const [user, setUser] = React.useState(null);
 
   React.useEffect(() => {
-    const currentUser: any = getCurrentUser();
-    setUser(currentUser);
+    loadUser();
   }, []);
+
+  const loadUser = async () => {
+    const currentUser: any = await getCurrentUser();
+    setUser(currentUser);
+  };
 
   return (
     <>

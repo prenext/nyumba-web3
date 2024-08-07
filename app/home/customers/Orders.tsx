@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Avatar,
   Box,
@@ -15,11 +15,11 @@ import {
   Paper,
   Button,
   Grid,
-} from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import CancelIcon from '@mui/icons-material/Cancel';
+} from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import CancelIcon from "@mui/icons-material/Cancel";
 
 const orders = [
   {
@@ -80,16 +80,28 @@ const OrderItem = ({ order }: { order: any }) => (
           }
         />
       </Grid>
-      <Grid item xs={12} sm={4} container alignItems="center" justifyContent="flex-end">
-        {order.status === 'Refunded' && (
+      <Grid
+        item
+        xs={12}
+        sm={4}
+        container
+        alignItems="center"
+        justifyContent="flex-end"
+      >
+        {order.status === "Refunded" && (
           <Box display="flex" alignItems="center">
             <CheckCircleIcon color="primary" fontSize="small" />
-            <Typography component="span" variant="body2" color="primary" ml={0.5}>
+            <Typography
+              component="span"
+              variant="body2"
+              color="primary"
+              ml={0.5}
+            >
               Refunded
             </Typography>
           </Box>
         )}
-        {order.status === 'Cancelled' && (
+        {order.status === "Cancelled" && (
           <Box display="flex" alignItems="center">
             <CancelIcon color="error" fontSize="small" />
             <Typography component="span" variant="body2" color="error" ml={0.5}>
@@ -106,21 +118,13 @@ const OrderItem = ({ order }: { order: any }) => (
 );
 
 const OrdersList = () => (
-  <Container maxWidth="md">
+  <Container
+    maxWidth="md"
+    sx={{
+      mt: "64px",
+    }}
+  >
     <Box mt={2}>
-      <Typography variant="h6" gutterBottom>
-        Orders
-      </Typography>
-      <Paper component="form" sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}>
-        <InputBase
-          sx={{ ml: 1, flex: 1 }}
-          placeholder="Search"
-          inputProps={{ 'aria-label': 'search orders' }}
-        />
-        <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
-          <SearchIcon />
-        </IconButton>
-      </Paper>
       <List>
         {orders.map((order, index) => (
           <React.Fragment key={index}>
