@@ -11,63 +11,20 @@ import {
   Avatar,
   Stack,
 } from "@mui/material";
-import { globalStyles } from "../lib/styles/global.styles";
+import { globalStyles } from "@/lib/styles/global.styles";
 import Image from "next/image";
 import Link from "next/link";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+
 
 function App() {
   return (
     <div>
-      <AppBar
-        position="sticky"
-        sx={globalStyles.appBar}
-        color="transparent"
-        elevation={0}
-      >
-        <Container
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            maxWidth: "xl",
-            height: "54px",
-          }}
-        >
-          <Image
-            width={100}
-            height={40}
-            src="nyumba-logo.svg"
-            alt="Nyumba Logo"
-          />
-          <Box sx={globalStyles.navLinks}>
-            <Link href="/home">
-              <Button variant="text" color="primary">
-                Home
-              </Button>
-            </Link>
-            <Link href="/properties">
-              <Button variant="text" color="primary">
-                Properties
-              </Button>
-            </Link>
-            <Link href="/#">
-              <Button variant="text" color="primary">
-                How It Works
-              </Button>
-            </Link>
-            <Link href="/login">
-              <Button variant="text" color="primary">
-                Sign In
-              </Button>
-            </Link>
-            <Link href="/signup">
-              <Button variant="contained" size="small" color="primary">
-                Sign Up
-              </Button>
-            </Link>
-          </Box>
-        </Container>
-      </AppBar>
+    
       <Container sx={globalStyles.mainContainer}>
         <Typography variant="h2" component="h1" gutterBottom>
           Welcome to <span style={{ color: "#00D1FF" }}>Nyumba Blockchain</span>
@@ -77,7 +34,9 @@ function App() {
           technology.
         </Typography>
 
-        <ArchigreekInfo />
+       
+        
+        
 
         <Box>
           <Button
