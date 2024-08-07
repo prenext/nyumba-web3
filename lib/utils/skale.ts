@@ -4,7 +4,7 @@ import {
   RealEstateMarketPlace,
   Property,
   User,
-} from "@/app/lib/types/Blockchain";
+} from "@/lib/types/Blockchain";
 
 dotenv.config();
 

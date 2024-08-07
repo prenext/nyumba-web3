@@ -10,15 +10,27 @@ import {
   Grid,
   TextField,
 } from "@mui/material";
-import { globalStyles } from "../lib/styles/global.styles";
+import { globalStyles } from "../../lib/styles/global.styles";
 import Image from "next/image";
 import Link from "next/link";
 import ScrollDialog from "./widgets/Modal";
 
-function App() {
+function App({
+  searchParams: { showAuthDialog, initialPage },
+}: {
+  searchParams: {
+    showAuthDialog: string;
+    initialPage: string;
+  };
+}) {
+  const isOpen = showAuthDialog === "true" ? true : false;
+
+  console.log("isOpen", isOpen);
+  console.log("initialPage", initialPage);
+
   return (
     <div>
-      <ScrollDialog isOpen initialPage="sign-in" />
+      <ScrollDialog isOpen={isOpen} initialPage={initialPage} />
       <AppBar
         position="sticky"
         sx={globalStyles.appBar}
@@ -56,16 +68,16 @@ function App() {
                 How It Works
               </Button>
             </Link>
-            <Link href="/login">
+            <a href="/?showAuthDialog=true&initialPage=sign-in">
               <Button variant="text" color="primary">
                 Sign In
               </Button>
-            </Link>
-            <Link href="/signup">
+            </a>
+            <a href="/?showAuthDialog=true&initialPage=sign-up">
               <Button variant="contained" size="small" color="primary">
                 Sign Up
               </Button>
-            </Link>
+            </a>
           </Box>
         </Container>
       </AppBar>

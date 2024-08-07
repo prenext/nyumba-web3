@@ -11,18 +11,15 @@ import {
   getCurrentWalletConnected,
   addWalletListener,
   disconnectWallet,
-} from "@/app/lib/utils/web3.utils";
+} from "@/lib/utils/web3.utils";
 import { signUpUser } from "../action";
 import { useFormState } from "react-dom";
+import { toast } from "react-toastify";
+import SubmitButton from "./SubmitButton";
 
 export default function SignUp() {
   const [walletAddress, setWalletAddress] = useState<string>("");
   const [walletBalance, setWalletBalance] = useState<string>("");
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-  });
 
   const [error, setError] = useState<string>("");
   const [state, formAction] = useFormState(signUpUser, null);
@@ -32,27 +29,10 @@ export default function SignUp() {
     addWalletListener(setWalletAddress, setWalletBalance);
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (!formData.firstName || !formData.lastName || !formData.email) {
-      setError("Please fill out all the fields.");
-    } else if (!walletAddress) {
-      setError("Please connect a Web3 wallet to continue.");
-    } else {
-      setError("");
-      // Handle form submission (e.g., send data to the server)
-      console.log(
-        "Form submitted with wallet address:",
-        walletAddress,
-        formData
-      );
-    }
-  };
+  useEffect(() => {
+    toast.success("User signed up successfully");
+    console.log("User signed up successfully");
+  }, [state]);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -75,8 +55,6 @@ export default function SignUp() {
                 id="firstName"
                 label="First Name"
                 autoFocus
-                value={formData.firstName}
-                onChange={handleChange}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -88,8 +66,6 @@ export default function SignUp() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="family-name"
-                value={formData.lastName}
-                onChange={handleChange}
               />
             </Grid>
             <Grid item xs={12}>
@@ -101,8 +77,6 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
-                value={formData.email}
-                onChange={handleChange}
               />
             </Grid>
             <Grid item xs={12}>
@@ -163,14 +137,7 @@ export default function SignUp() {
               {error}
             </Typography>
           )}
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Sign Up
-          </Button>
+          <SubmitButton sx={{ mt: 3, mb: 2 }}>Sign Up</SubmitButton>
         </Box>
       </Box>
     </Container>
