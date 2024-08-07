@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Grid, Typography, Card, CardContent, CardMedia, Avatar } from '@mui/material';
+import { Box, Grid, Typography, Card, CardContent, Avatar } from '@mui/material';
 
 const Founders = () => {
   const founders = [
@@ -48,26 +48,24 @@ const Founders = () => {
       </Typography>
       <Grid container spacing={4} justifyContent="center">
         {founders.map((founder, index) => (
-          <Grid item xs={12} md={4} key={index}>
-            <Card>
-              <Box display="flex" flexDirection="column" alignItems="center">
-                <Avatar
-                  src={founder.imgSrc}
-                  alt={`${founder.name} Image`}
-                  sx={{ borderRadius: '50%', width: '150px', height: '150px', marginTop: '16px' }}
-                />
-                <CardContent>
-                  <Typography variant="h6" gutterBottom align="center">
-                    {founder.name}
-                  </Typography>
-                  <Typography variant="body1" color="primary" align="center">
-                    {founder.title}
-                  </Typography>
-                  <Typography variant="body2" align="center">
-                    {founder.description}
-                  </Typography>
-                </CardContent>
-              </Box>
+          <Grid item xs={12} sm={6} md={4} key={index}>
+            <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <Avatar
+                src={founder.imgSrc}
+                alt={`${founder.name} Image`}
+                sx={{ borderRadius: '50%', width: '150px', height: '150px', marginTop: '16px' }}
+              />
+              <CardContent sx={{ textAlign: 'center', flexGrow: 1 }}>
+                <Typography variant="h6" gutterBottom>
+                  {founder.name}
+                </Typography>
+                <Typography variant="body1" color="primary">
+                  {founder.title}
+                </Typography>
+                <Typography variant="body2">
+                  {founder.description}
+                </Typography>
+              </CardContent>
             </Card>
           </Grid>
         ))}

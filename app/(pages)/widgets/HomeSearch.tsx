@@ -15,7 +15,7 @@ const HomeSearch = () => {
         backgroundImage: 'url(https://i.pinimg.com/564x/6d/b6/77/6db6776090b1126206c2b5851dfdb0e0.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        minHeight: '100vh',
+        minHeight: 750,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',

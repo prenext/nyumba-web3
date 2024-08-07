@@ -3,122 +3,88 @@ import {
   Box,
   Typography,
   Card,
-  CardMedia,
   CardContent,
   Container,
-  Button,
-  Rating,
   Grid,
+  Avatar,
 } from "@mui/material";
+import HomeIcon from "@mui/icons-material/Home";
+import ApartmentIcon from "@mui/icons-material/Apartment";
+import LandscapeIcon from "@mui/icons-material/Landscape";
+import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
 
-interface Property {
+interface Service {
   name: string;
-  frontImage: string;
-  backImage: string;
-  price: string;
-  rating: number;
   description: string;
+  icon: React.ReactNode;
 }
 
-const properties: Property[] = [
+const services: Service[] = [
   {
-    name: "Luxury Beachfront Villa",
-    frontImage:
-      "https://i.pinimg.com/736x/ec/e5/14/ece51435dc299f512ae8243352b687d3.jpg",
-    backImage:
-      "https://i.pinimg.com/564x/af/5c/0a/af5c0ac821f6cff10ccecb89db5b1fca.jpg",
-    price: "540",
-    rating: 4.0,
-    description: "Exclusive real estate property with ocean view",
+    name: "Buy Land",
+    description: "Purchase plots of land for residential or commercial use.",
+    icon: <LandscapeIcon sx={{ fontSize: 40 }} />,
   },
   {
-    name: "Elegant Mansion in the Countryside",
-    frontImage:
-      "https://i.pinimg.com/564x/6d/b1/19/6db1195024ec2f1378c7087ce8e7e9f1.jpg",
-    backImage:
-      "https://i.pinimg.com/564x/19/4f/55/194f551414d71c33fdf5a74f83eba35d.jpg",
-    price: "540",
-    rating: 4.0,
-    description: "Private real estate retreat surrounded by nature",
+    name: "Real Estate",
+    description: "Invest in residential and commercial properties.",
+    icon: <HomeIcon sx={{ fontSize: 40 }} />,
   },
   {
-    name: "Modern City Apartment",
-    frontImage:
-      "https://i.pinimg.com/564x/d2/46/80/d2468079cfe358de1d3e0441ac0fa973.jpg",
-    backImage:
-      "https://i.pinimg.com/564x/4c/41/ca/4c41ca7614354badabb8bfa6a4464db7.jpg",
-    price: "540",
-    rating: 4.0,
-    description: "Contemporary apartment located in the city center",
+    name: "Lease Land",
+    description: "Lease land for farming, industrial, or residential purposes.",
+    icon: <BusinessCenterIcon sx={{ fontSize: 40 }} />,
+  },
+  {
+    name: "Rent Houses",
+    description: "Find houses and apartments for rent.",
+    icon: <ApartmentIcon sx={{ fontSize: 40 }} />,
   },
 ];
 
-interface PropertyCardProps {
-  property: Property;
-}
-
-const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => (
-  <Card sx={{ marginBottom: 4 }}>
-    <CardContent>
+const ServiceCard: React.FC<{ service: Service }> = ({ service }) => (
+  <Card
+    sx={{
+      marginBottom: 4,
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      padding: 2,
+    }}
+  >
+    <Avatar
+      sx={{ bgcolor: "primary.main", width: 60, height: 60, marginBottom: 2 }}
+    >
+      {service.icon}
+    </Avatar>
+    <CardContent sx={{ textAlign: "center" }}>
+      <Typography variant="h6" component="div" gutterBottom>
+        {service.name}
+      </Typography>
       <Typography variant="body2" color="text.secondary">
-        {property.description}
+        {service.description}
       </Typography>
-      <Typography variant="h6" component="div">
-        {property.name}
-      </Typography>
-    </CardContent>
-    <Grid container spacing={2}>
-      <Grid item xs={6}>
-        <CardMedia
-          component="img"
-          alt={`${property.name} front view`}
-          height="240"
-          image={property.frontImage}
-        />
-      </Grid>
-      <Grid item xs={6}>
-        <CardMedia
-          component="img"
-          alt={`${property.name} back view`}
-          height="240"
-          image={property.backImage}
-        />
-      </Grid>
-    </Grid>
-    <CardContent>
-      <Box sx={{ display: 'flex', alignItems: 'center', marginY: 1 }}>
-        <Rating value={property.rating} readOnly precision={0.5} size="small" />
-        <Typography variant="body2" sx={{ marginLeft: 0.5 }}>
-          {property.rating}
-        </Typography>
-      </Box>
-      <Typography variant="h6" color="text.primary">
-        ${property.price} total
-      </Typography>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: 2 }}>
-        <Button variant="contained" color="primary">
-          Buy Now
-        </Button>
-        <Button variant="outlined" color="secondary">
-          Add to cart
-        </Button>
-      </Box>
     </CardContent>
   </Card>
 );
 
-const PropertiesSection: React.FC = () => (
+const ServicesSection: React.FC = () => (
   <Box sx={{ paddingY: 4, paddingX: 2 }}>
     <Container maxWidth="md">
       <Typography variant="h4" gutterBottom>
-        Real Estate Listings
+        Our Services
       </Typography>
       <Typography variant="body1" gutterBottom>
-        Discover stunning real estate properties with our curated listings and expert insights.
+        Explore the range of services we offer to help you buy, sell, lease, or
+        rent properties.
       </Typography>
-      {properties.map((property, index) => (
-        <PropertyCard key={index} property={property} />
-      ))}
+      <Grid container spacing={4} justifyContent="center">
+        {services.map((service, index) => (
+          <Grid item xs={12} sm={6} md={3} key={index}>
+            <ServiceCard service={service} />
+          </Grid>
+        ))}
+      </Grid>
     </Container>
   </Box>
 );
@@ -126,7 +92,7 @@ const PropertiesSection: React.FC = () => (
 function PropertiesPage() {
   return (
     <div>
-      <PropertiesSection />
+      <ServicesSection />
     </div>
   );
 }

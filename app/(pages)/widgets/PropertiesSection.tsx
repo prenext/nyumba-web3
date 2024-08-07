@@ -1,16 +1,51 @@
-import React from 'react';
-import { Box, Typography, Grid, Card, CardMedia, CardContent, Button } from '@mui/material';
+import React from "react";
+import {
+  Box,
+  Typography,
+  Grid,
+  Card,
+  CardMedia,
+  CardContent,
+  Button,
+  Container,
+} from "@mui/material";
 
-const PropertyCard = ({ image, title, description, propertiesCount }: { image: string, title: string, description: string, propertiesCount: string }) => {
+const PropertyCard = ({
+  image,
+  title,
+  description,
+  propertiesCount,
+}: {
+  image: string;
+  title: string;
+  description: string;
+  propertiesCount: string;
+}) => {
   return (
-    <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+    <Card
+      sx={{
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        boxShadow: "none",
+        borderRadius: 10,
+        border: "1px solid #E0E0E0",
+      }}
+    >
       <CardMedia
         component="img"
         image={image}
         alt={title}
         sx={{ height: 200 }}
       />
-      <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <CardContent
+        sx={{
+          flexGrow: 1,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+        }}
+      >
         <Box>
           <Typography variant="h6" gutterBottom>
             {title}
@@ -20,9 +55,7 @@ const PropertyCard = ({ image, title, description, propertiesCount }: { image: s
           </Typography>
         </Box>
         <Box mt={2}>
-          <Button variant="outlined">
-            {propertiesCount} properties
-          </Button>
+          <Button variant="outlined">{propertiesCount} properties</Button>
         </Box>
       </CardContent>
     </Card>
@@ -32,27 +65,40 @@ const PropertyCard = ({ image, title, description, propertiesCount }: { image: s
 const PropertiesSection = () => {
   const properties = [
     {
-      image: 'https://i.pinimg.com/564x/5e/2a/dd/5e2add23445c93e82fc9acf028eeff19.jpg',
-      title: 'Enjoy the great cold',
-      description: '',
-      propertiesCount: '6,872'
+      image:
+        "https://i.pinimg.com/564x/5e/2a/dd/5e2add23445c93e82fc9acf028eeff19.jpg",
+      title: "Enjoy the great cold",
+      description: "",
+      propertiesCount: "6,872",
     },
     {
-      image: 'https://i.pinimg.com/564x/50/e8/d8/50e8d88544815ccc12b1650c8860830a.jpg',
-      title: 'Pick up the earliest sunrise',
-      description: '',
-      propertiesCount: '6,872'
+      image:
+        "https://i.pinimg.com/564x/50/e8/d8/50e8d88544815ccc12b1650c8860830a.jpg",
+      title: "Pick up the earliest sunrise",
+      description: "",
+      propertiesCount: "6,872",
     },
     {
-      image: 'https://i.pinimg.com/564x/bb/d8/f8/bbd8f8060eedf24f2184d4d34bf2f08f.jpg',
-      title: 'Unique stay',
-      description: '',
-      propertiesCount: '6,872'
-    }
+      image:
+        "https://i.pinimg.com/564x/bb/d8/f8/bbd8f8060eedf24f2184d4d34bf2f08f.jpg",
+      title: "Unique stay",
+      description: "",
+      propertiesCount: "6,872",
+    },
   ];
 
   return (
-    <Box p={4} textAlign="center" mb={10}>
+    <Box
+      p={4}
+      textAlign="center"
+      my={10}
+      sx={{
+        py: 15,
+        backgroundColor: "#F5EBDC",
+      }}
+
+    >
+      <Container  maxWidth="xl">
       <Typography variant="h4" gutterBottom>
         Move to What Moves You
       </Typography>
@@ -71,6 +117,7 @@ const PropertiesSection = () => {
           </Grid>
         ))}
       </Grid>
+      </Container>
     </Box>
   );
 };

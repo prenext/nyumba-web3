@@ -57,7 +57,6 @@ export default function Sidebar({ open, toggleDrawer, user }: DrawerProps) {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          p: "8px",
           px: [1],
         }}
       >
@@ -65,6 +64,9 @@ export default function Sidebar({ open, toggleDrawer, user }: DrawerProps) {
           <Image
             width={100}
             height={40}
+            style={{
+              marginTop: 6,
+            }}
             src="nyumba-logo.svg"
             alt="Nyumba Logo"
           />
