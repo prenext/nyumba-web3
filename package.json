@@ -20,10 +20,12 @@
     "@prisma/client": "^5.16.2",
     "dotenv": "^16.4.5",
     "ethers": "^6.13.2",
-    "next": "14.2.5",
     "hardhat": "^2.20.1",
+    "mongodb": "^6.8.0",
+    "next": "14.2.5",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-toastify": "^10.0.5"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
@@ -33,6 +35,7 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
+    "prisma": "^5.17.0",
     "typescript": "^5"
   }
 }

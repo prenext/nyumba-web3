@@ -9,6 +9,8 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
+
+  // State to manage the sidebar open/close state
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);

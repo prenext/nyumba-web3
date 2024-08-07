@@ -12,62 +12,62 @@ import {
   Stack,
 } from "@mui/material";
 import { globalStyles } from "../lib/styles/global.styles";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import YouTubeIcon from "@mui/icons-material/YouTube";
-
-function ArchigreekInfo() {
-  return (
-    <Container maxWidth="lg">
-      <Box sx={{ textAlign: "center", mt: 4 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          A company with an expertise on any architectural, and engineering
-          needs
-        </Typography>
-        <Typography variant="body1" paragraph>
-          Archigreek, a company based in Indonesia, starts from 2005 until now,
-          has faced many challenges and helped many people in their
-          architectural and engineering needs.
-        </Typography>
-        <Typography variant="body1" paragraph>
-          The main value of Archigreek is people. Our Company has brought
-          together the best specialists in Indonesia, working with the use of
-          BIM-technologies.
-        </Typography>
-        <Typography variant="body1" paragraph>
-          Experience and desire to improve, allowed the company to become an
-          expert in design and consulting.
-        </Typography>
-      </Box>
-      <Grid container spacing={2} sx={{ mt: 4 }}>
-        <Grid item xs={12} sm={6}>
-          <Card elevation={3}>
-            <img
-              src="https://i.pinimg.com/736x/08/94/d8/0894d871a40ba55149120e6ed4997294.jpg"
-              alt="Architectural Image 1"
-              style={{ width: "100%", height: "auto" }}
-            />
-          </Card>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <Card elevation={3}>
-            <img
-              src="https://i.pinimg.com/564x/c2/5e/f7/c25ef7b23ef4050a9a91c739a5b9324f.jpg"
-              alt="Architectural Image 2"
-              style={{ width: "100%", height: "auto" }}
-            />
-          </Card>
-        </Grid>
-      </Grid>
-    </Container>
-  );
-}
+import Image from "next/image";
+import Link from "next/link";
 
 function App() {
   return (
     <div>
+      <AppBar
+        position="sticky"
+        sx={globalStyles.appBar}
+        color="transparent"
+        elevation={0}
+      >
+        <Container
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            maxWidth: "xl",
+            height: "54px",
+          }}
+        >
+          <Image
+            width={100}
+            height={40}
+            src="nyumba-logo.svg"
+            alt="Nyumba Logo"
+          />
+          <Box sx={globalStyles.navLinks}>
+            <Link href="/home">
+              <Button variant="text" color="primary">
+                Home
+              </Button>
+            </Link>
+            <Link href="/properties">
+              <Button variant="text" color="primary">
+                Properties
+              </Button>
+            </Link>
+            <Link href="/#">
+              <Button variant="text" color="primary">
+                How It Works
+              </Button>
+            </Link>
+            <Link href="/login">
+              <Button variant="text" color="primary">
+                Sign In
+              </Button>
+            </Link>
+            <Link href="/signup">
+              <Button variant="contained" size="small" color="primary">
+                Sign Up
+              </Button>
+            </Link>
+          </Box>
+        </Container>
+      </AppBar>
       <Container sx={globalStyles.mainContainer}>
         <Typography variant="h2" component="h1" gutterBottom>
           Welcome to <span style={{ color: "#00D1FF" }}>Nyumba Blockchain</span>
