@@ -1,73 +1,73 @@
 import React from "react";
 import {
   Container,
-  AppBar,
-  Toolbar,
   Typography,
   Box,
   Button,
   Card,
   CardContent,
   Grid,
-  TextField,
+  IconButton,
+  Avatar,
+  Stack,
 } from "@mui/material";
 import { globalStyles } from "../lib/styles/global.styles";
-import Image from "next/image";
-import Link from "next/link";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+
+function ArchigreekInfo() {
+  return (
+    <Container maxWidth="lg">
+      <Box sx={{ textAlign: "center", mt: 4 }}>
+        <Typography variant="h4" component="h1" gutterBottom>
+          A company with an expertise on any architectural, and engineering
+          needs
+        </Typography>
+        <Typography variant="body1" paragraph>
+          Archigreek, a company based in Indonesia, starts from 2005 until now,
+          has faced many challenges and helped many people in their
+          architectural and engineering needs.
+        </Typography>
+        <Typography variant="body1" paragraph>
+          The main value of Archigreek is people. Our Company has brought
+          together the best specialists in Indonesia, working with the use of
+          BIM-technologies.
+        </Typography>
+        <Typography variant="body1" paragraph>
+          Experience and desire to improve, allowed the company to become an
+          expert in design and consulting.
+        </Typography>
+      </Box>
+      <Grid container spacing={2} sx={{ mt: 4 }}>
+        <Grid item xs={12} sm={6}>
+          <Card elevation={3}>
+            <img
+              src="https://i.pinimg.com/736x/08/94/d8/0894d871a40ba55149120e6ed4997294.jpg"
+              alt="Architectural Image 1"
+              style={{ width: "100%", height: "auto" }}
+            />
+          </Card>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <Card elevation={3}>
+            <img
+              src="https://i.pinimg.com/564x/c2/5e/f7/c25ef7b23ef4050a9a91c739a5b9324f.jpg"
+              alt="Architectural Image 2"
+              style={{ width: "100%", height: "auto" }}
+            />
+          </Card>
+        </Grid>
+      </Grid>
+    </Container>
+  );
+}
 
 function App() {
   return (
     <div>
-      <AppBar
-        position="sticky"
-        sx={globalStyles.appBar}
-        color="transparent"
-        elevation={0}
-      >
-        <Container
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            maxWidth: "xl",
-            height: "54px",
-          }}
-        >
-          <Image
-            width={100}
-            height={40}
-            src="nyumba-logo.svg"
-            alt="Nyumba Logo"
-          />
-          <Box sx={globalStyles.navLinks}>
-            <Link href="/home">
-              <Button variant="text" color="primary">
-                Home
-              </Button>
-            </Link>
-            <Link href="/properties">
-              <Button variant="text" color="primary">
-                Properties
-              </Button>
-            </Link>
-            <Link href="/#">
-              <Button variant="text" color="primary">
-                How It Works
-              </Button>
-            </Link>
-            <Link href="/login">
-              <Button variant="text" color="primary">
-                Sign In
-              </Button>
-            </Link>
-            <Link href="/signup">
-              <Button variant="contained" size="small" color="primary">
-                Sign Up
-              </Button>
-            </Link>
-          </Box>
-        </Container>
-      </AppBar>
       <Container sx={globalStyles.mainContainer}>
         <Typography variant="h2" component="h1" gutterBottom>
           Welcome to <span style={{ color: "#00D1FF" }}>Nyumba Blockchain</span>
@@ -76,6 +76,9 @@ function App() {
           Buy and sell properties securely and transparently using blockchain
           technology.
         </Typography>
+
+        <ArchigreekInfo />
+
         <Box>
           <Button
             variant="contained"
@@ -87,6 +90,34 @@ function App() {
           <Button variant="outlined" color="primary">
             Learn More
           </Button>
+          <Box
+            sx={{ backgroundColor: "common.white", color: "grey.900", py: 4 }}
+          >
+            <Container maxWidth="md">
+              <Typography variant="h4" gutterBottom>
+                We’re not just another design studio.
+              </Typography>
+              <Typography variant="h6" gutterBottom>
+                Our team is dedicated to creating user-centered designs that not
+                only look great, but also drive results. We understand that in
+                today’s digital age, user experience is everything.
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                That’s why our approach to design is centered around
+                understanding the needs and behaviors of your target audience.
+                So why settle for an average design when you can have one that
+                truly stands out with us.
+              </Typography>
+              <Stack direction="row" spacing={2} alignItems="center" mt={2}>
+                <Avatar src="https://i.pinimg.com/564x/5e/10/e2/5e10e28f86f6ea191062bb924e1b4f40.jpg" alt="Avatar 1" />
+                <Avatar src="https://i.pinimg.com/564x/f6/72/97/f67297871c55069e0632b31d56d4bc39.jpg" alt="Avatar 2" />
+                <Avatar src="https://i.pinimg.com/564x/34/53/60/345360f8c818beb8c85b3b453ea030ee.jpg" alt="Avatar 3" />
+                <Button variant="contained" color="success">
+                  Your Success Allies!
+                </Button>
+              </Stack>
+            </Container>
+          </Box>
         </Box>
         <Box sx={globalStyles.cardContainer}>
           <Card sx={globalStyles.card}>
@@ -291,39 +322,76 @@ function App() {
             </Grid>
           </Grid>
         </Box>
-        {/* Footer */}
-        <Box sx={globalStyles.footer}>
-          <Box sx={globalStyles.footerTop}>
-            <Typography variant="h6">Nyumba Blockchain</Typography>
-            <Box>
-              <Typography>PROPERTIES</Typography>
-              <Typography>SUPPORT</Typography>
-              <Typography>ABOUT</Typography>
-            </Box>
-          </Box>
-          <Box sx={globalStyles.footerBottom}>
-            <Typography variant="body2">
-              Sign up for our monthly newsletter
+        <Container>
+          <Box textAlign="center" my={4}>
+            <Typography variant="h4" component="p" gutterBottom>
+              Consider collaborating? Reach us. We want to collaborate with you
+              to build an amazing stuff
             </Typography>
             <Box
-              component="form"
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                marginTop: "10px",
-              }}
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              mt={2}
             >
-              <TextField
-                variant="outlined"
-                placeholder="Enter your email address"
-                sx={{ marginRight: "10px" }}
-              />
-              <Button variant="contained" color="primary">
-                Subscribe
+              <Button
+                variant="contained"
+                color="success"
+                endIcon={<ArrowForwardIcon />}
+              >
+                Let’s talk
               </Button>
             </Box>
           </Box>
-        </Box>
+        </Container>
+        <Container>
+          <Grid container spacing={4} justifyContent="space-between">
+            <Grid item>
+              <Typography variant="h6" gutterBottom>
+                SOCIAL
+              </Typography>
+              <Box>
+                <IconButton
+                  href="https://www.facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FacebookIcon />
+                </IconButton>
+                <IconButton
+                  href="https://www.instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <InstagramIcon />
+                </IconButton>
+                <IconButton
+                  href="https://www.twitter.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <TwitterIcon />
+                </IconButton>
+                <IconButton
+                  href="https://www.youtube.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <YouTubeIcon />
+                </IconButton>
+              </Box>
+            </Grid>
+            <Grid item>
+              <Typography variant="h6" gutterBottom>
+                CONTACT US
+              </Typography>
+              <Typography>Email:</Typography>
+              <Typography>Phone: 1.666.727.8000</Typography>
+              <Typography>Hours: Monday - Thursday: 9AM - 7PM ET</Typography>
+              <Typography>Friday: 9AM - 2PM ET</Typography>
+            </Grid>
+          </Grid>
+        </Container>
       </Container>
     </div>
   );

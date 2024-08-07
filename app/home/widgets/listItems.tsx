@@ -9,64 +9,42 @@ import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import Link from 'next/link';
 
-export const mainListItems = (
+const links = [
+  { name: 'Dashboard', icon: <DashboardIcon />, href: '/home' },
+  { name: 'Orders', icon: <ShoppingCartIcon />, href: '/home/orders' },
+  { name: 'Customers', icon: <PeopleIcon />, href: '/home/customers' },
+  { name: 'Reports', icon: <BarChartIcon />, href: '/home/reports' },
+  { name: 'Integrations', icon: <LayersIcon />, href: '/home/integrations' },
+];
+
+const savedReports = [
+  { name: 'Current month', icon: <AssignmentIcon />, href: '/reports/current-month' },
+  { name: 'Last quarter', icon: <AssignmentIcon />, href: '/reports/last-quarter' },
+  { name: 'Year-end sale', icon: <AssignmentIcon />, href: '/reports/year-end-sale' },
+];
+
+const RenderList = ({ items }: { items: { name: string, icon: React.ReactNode, href: string }[] }) => (
   <React.Fragment>
-    <ListItemButton>
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary="Dashboard" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <ShoppingCartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Orders" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Customers" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <BarChartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Reports" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary="Integrations" />
-    </ListItemButton>
+    {items.map((item, index) => (
+      <Link key={index} href={item.href} passHref>
+        <ListItemButton component="a">
+          <ListItemIcon>{item.icon}</ListItemIcon>
+          <ListItemText primary={item.name} />
+        </ListItemButton>
+      </Link>
+    ))}
   </React.Fragment>
 );
+
+export const mainListItems = <RenderList items={links} />;
 
 export const secondaryListItems = (
   <React.Fragment>
     <ListSubheader component="div" inset>
       Saved reports
     </ListSubheader>
-    <ListItemButton>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Current month" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Last quarter" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Year-end sale" />
-    </ListItemButton>
+    <RenderList items={savedReports} />
   </React.Fragment>
 );
