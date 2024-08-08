@@ -88,7 +88,7 @@ const Footer = () => {
         }}
       >
         <Typography variant="body2" sx={{ color: "white" }}>
-          &copy; 2021 Nyumba Blockchain. All rights reserved.
+          &copy; 2024 Nyumba Blockchain. All rights reserved.
         </Typography>
       </Box>
     </Box>
