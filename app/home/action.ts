@@ -22,10 +22,7 @@ export async function getPropertiesByUserAddress() {
     return properties;
   } catch (error) {
     console.error("Error fetching properties by user address:", error);
-    return {
-      success: false,
-      message: "Error fetching properties. Please try again later.",
-    };
+    return [];
   } finally {
    // await client.close();
   }

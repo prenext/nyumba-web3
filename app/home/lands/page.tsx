@@ -20,7 +20,7 @@ const LandsPage = async () => {
       {data.length > 0 ? (
         <>
           {/* <SearchForm /> */}
-          <Grid container spacing={2} >
+          <Grid container spacing={2}>
             {data.map((property: any, index: any) => (
               <Grid item xs={12} sm={6} md={4} key={index}>
                 <PropertyCard property={property} />

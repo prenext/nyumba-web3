@@ -9,7 +9,6 @@ const uri = process.env.MONGODB_URI;
 const options = {
   appName: "nyumba-web3",
   useNewUrlParser: true,
-  useUnifiedTopology: true,
 };
 
 let client: MongoClient;
