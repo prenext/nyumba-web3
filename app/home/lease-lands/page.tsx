@@ -6,6 +6,8 @@ import {
   MenuItem,
   Select,
   FormControl,
+  TextField,
+  Box,
 } from "@mui/material";
 import HouseCard from "@/components/PropertyCard";
 import SearchForm from "@/components/SearchForm";
@@ -40,7 +42,7 @@ const houseList = [
 const HouseList = () => {
   return (
     <div>
-      <SearchForm />
+     <SearchForm />
       <Grid container spacing={2} sx={{ marginTop: 2 }}>
         {houseList.map((house, index) => (
           <Grid item xs={12} sm={6} md={3} key={index}>

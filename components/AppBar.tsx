@@ -10,6 +10,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Avatar, Toolbar } from "@mui/material";
 import DropDownIcon from "@mui/icons-material/ArrowDropDown";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const drawerWidth: number = 240;
 
@@ -42,6 +43,9 @@ export default function CustomAppBar({
   toggleDrawer,
   user,
 }: AppBarProps) {
+  const pathname = usePathname();
+  const breadcrumbParts = pathname.split("/").filter((part) => part);
+
   return (
     <AppBar
       position="absolute"
@@ -81,11 +85,26 @@ export default function CustomAppBar({
           noWrap
           sx={{ flexGrow: 1 }}
         >
-          Dashboard
+          {breadcrumbParts.length === 0
+            ? "Dashboard"
+            : breadcrumbParts.map((part, index) => {
+                const path = `/${breadcrumbParts
+                  .slice(0, index + 1)
+                  .join("/")}`;
+                return (
+                  <React.Fragment key={index}>
+                    {index > 0 && " / "}
+                    <Link
+                      href={path}
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      {part.split("-").join(" ")}
+                    </Link>
+                  </React.Fragment>
+                );
+              })}
         </Typography>
-        <Typography>
-          $200.00
-        </Typography>
+        <Typography>$200.00</Typography>
         <Link href="/home/account">
           <IconButton color="inherit">
             <Avatar

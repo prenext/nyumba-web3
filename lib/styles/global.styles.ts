@@ -30,11 +30,15 @@ export const globalStyles: GlobalStyles = {
     // borderBottom: "1px solid #33333310",
   },
   navLinks: {
-    display: "flex",
+    display: {
+      xs: "none",
+      md: "flex",
+    },
     justifyContent: "space-between",
     alignItems: "center",
     textDecoration: "none",
     fontSize: "18px",
+
   },
   mainContainer: {
     padding: "40px 20px",

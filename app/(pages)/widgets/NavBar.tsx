@@ -35,6 +35,7 @@ const NavBar: React.FC<Props> = () => {
         >
           <Link href="/">
             <Image
+              style={{ marginTop: "10px" }}
               width={100}
               height={40}
               src="nyumba-logo.svg"
@@ -57,13 +58,22 @@ const NavBar: React.FC<Props> = () => {
                 How It Works
               </Button>
             </Link>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              gap: "10px",
+            }}
+          >
             <a href="/?showAuthDialog=true&initialPage=sign-in">
-              <Button variant="text" color="primary">
+              <Button sx={{px: 2}} variant="outlined" color="primary">
                 Sign In
               </Button>
             </a>
             <a href="/?showAuthDialog=true&initialPage=sign-up">
-              <Button variant="contained" size="small" color="primary">
+              <Button sx={{px: 2}} variant="contained" size="small" color="primary">
                 Sign Up
               </Button>
             </a>
