@@ -9,14 +9,10 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemText,
-  ListItemSecondaryAction,
   Typography,
-  InputBase,
-  Paper,
   Button,
   Grid,
 } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
@@ -51,6 +47,7 @@ const orders = [
     status: "Cancelled",
   },
 ];
+
 
 const OrderItem = ({ order }: { order: any }) => (
   <ListItem alignItems="flex-start">
@@ -118,13 +115,8 @@ const OrderItem = ({ order }: { order: any }) => (
 );
 
 const OrdersList = () => (
-  <Container
-    maxWidth="md"
-    sx={{
-      mt: "64px",
-    }}
-  >
-    <Box mt={2}>
+  <Container maxWidth="md">
+    <Box mt={1}>
       <List>
         {orders.map((order, index) => (
           <React.Fragment key={index}>

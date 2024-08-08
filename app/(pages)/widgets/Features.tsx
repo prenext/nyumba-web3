@@ -11,8 +11,8 @@ const Features = () => {
     <Box
       my={10}
       sx={{
-        backgroundColor: "#3f51b5",
-        color: "white",
+        backgroundColor: "#33333320",
+        // color: "white",
         py: 15,
         px: 2,
       }}

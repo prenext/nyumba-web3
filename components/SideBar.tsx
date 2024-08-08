@@ -14,7 +14,8 @@ import {
 } from "@/app/home/widgets/listItems";
 import Link from "next/link";
 import Image from "next/image";
-import { Avatar, Typography } from "@mui/material";
+import { Avatar, Box, Button, Typography } from "@mui/material";
+import { Add } from "@mui/icons-material";
 const drawerWidth: number = 240;
 
 interface DrawerProps {
@@ -81,6 +82,27 @@ export default function Sidebar({ open, toggleDrawer, user }: DrawerProps) {
         <Divider sx={{ my: 1 }} />
         {secondaryListItems}
       </List>
+      <Box flexGrow={1} />
+      <Divider />
+      {/* button to add a new property */}
+      <Box
+        display="flex"
+        // justifyContent="center"
+        // alignItems="center"
+        flexDirection="column"
+        py={2}
+        px={2}
+      >
+        <Link href="/home/new-property">
+          {open && (
+            <Button variant="outlined" color="primary">
+              <Add />
+              <Typography variant="body1">new property</Typography>
+            </Button>
+          )}
+          {!open && <Add />}
+        </Link>
+      </Box>
     </Drawer>
   );
 }

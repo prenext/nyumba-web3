@@ -15,8 +15,9 @@ const HomeSearch = () => {
         backgroundImage: 'url(https://i.pinimg.com/564x/6d/b6/77/6db6776090b1126206c2b5851dfdb0e0.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        minHeight: 750,
+        minHeight: 600,
         display: 'flex',
+        overflow: 'hidden',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
@@ -25,7 +26,7 @@ const HomeSearch = () => {
     >
       <Box textAlign="center" mb={4}>
         <Typography variant="h3" gutterBottom>
-          Let’s find a home that’s perfect for you
+          Let&apos;s find a home that&apos;s perfect for you
         </Typography>
         <Typography variant="subtitle1" gutterBottom>
           Search confidently with your trusted source of homes for sale or rent.
@@ -38,7 +39,7 @@ const HomeSearch = () => {
             display: 'flex',
             alignItems: 'center',
             borderRadius: '50px',
-            p: '2px 4px',
+            // p: '2px 4px',
             width: '100%',
             maxWidth: '600px',
           }}

@@ -20,7 +20,6 @@ const AccountPage = async () => {
   return (
     <Container
       sx={{
-        marginTop: "64px",
         padding: 3,
       }}
       maxWidth="sm"
@@ -30,9 +29,9 @@ const AccountPage = async () => {
           src={user?.avatar}
           alt={user?.firstName}
           sx={{
-            width: 180,
-            height: 180,
-            marginBottom: 2,
+            width: 100,
+            height: 100,
+            marginBottom: 4,
             position: "relative",
             border: "4px solid",
           }}
