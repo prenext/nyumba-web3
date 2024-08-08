@@ -76,7 +76,7 @@ const createFormData = (file: File) => {
 // Function for user to add a new property
 export async function addProperty(prevState: any, formData: any) {
   try {
-    await client.connect();
+    //await client.connect();
 
     const userAddress: { name: string; value: string } | any = await getCookie(
       "wallet-address"
@@ -153,6 +153,6 @@ export async function addProperty(prevState: any, formData: any) {
       message: `Property added successfully. Current step: ${currentStep}`,
     };
   } finally {
-    await client.close();
+   // await client.close();
   }
 }

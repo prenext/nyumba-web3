@@ -7,7 +7,7 @@ import { ObjectId } from "mongodb";
 // Function to fetch a property by its ID and the owner's details
 export async function getPropertyById(propertyId: string) {
   try {
-    await client.connect();
+    //await client.connect();
 
     const userAddress: { name: string; value: string } | any = await getCookie(
       "wallet-address"
@@ -42,14 +42,14 @@ export async function getPropertyById(propertyId: string) {
       myAddress: userAddress.value,
     };
   } finally {
-    await client.close();
+   // await client.close();
   }
 }
 
 // Function to request a property
 export async function requestProperty(prevState: any, formData: any) {
   try {
-    await client.connect();
+    //await client.connect();
 
     // Fetch the property details by property ID
     // const property = await client
@@ -80,6 +80,6 @@ export async function requestProperty(prevState: any, formData: any) {
       message: "Property requested successfully.",
     };
   } finally {
-    await client.close();
+   // await client.close();
   }
 }

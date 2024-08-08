@@ -1,17 +1,22 @@
 import { MongoClient } from "mongodb";
 
+// Ensure the MongoDB URI is set
 if (!process.env.MONGODB_URI) {
   throw new Error('Invalid/Missing environment variable: "MONGODB_URI"');
 }
 
 const uri = process.env.MONGODB_URI;
-const options = { appName: "devrel.template.nextjs" };
+const options = {
+  appName: "nyumba-web3",
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+};
 
 let client: MongoClient;
 
+// In development mode, use a global variable to persist the client
+// across module reloads due to Hot Module Replacement (HMR)
 if (process.env.NODE_ENV === "development") {
-  // In development mode, use a global variable so that the value
-  // is preserved across module reloads caused by HMR (Hot Module Replacement).
   let globalWithMongo = global as typeof globalThis & {
     _mongoClient?: MongoClient;
   };
@@ -21,11 +26,17 @@ if (process.env.NODE_ENV === "development") {
   }
   client = globalWithMongo._mongoClient;
 } else {
-  // In production mode, it's best to not use a global variable.
+  // In production mode, create a new MongoClient instance
   client = new MongoClient(uri, options);
 }
 
-// Export a module-scoped MongoClient. By doing this in a
-// separate module, the client can be shared across functions.
+// Function to connect to the database
+export async function connectToDatabase() {
+  if (!client.on) {
+    //await client.connect();
+  }
+  return client.db(process.env.DATABASE_NAME);
+}
 
+// Export the client instance for use in your functions
 export default client;

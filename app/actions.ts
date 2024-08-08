@@ -15,7 +15,7 @@ export async function getCurrentUser() {
     const userAddress: { name: string; value: string } | any = await getCookie(
       "wallet-address"
     );
-    await client.connect();
+    //await client.connect();
     const user = await client
       .db(DATABASE_NAME)
       .collection("users")
@@ -34,14 +34,14 @@ export async function getCurrentUser() {
       );
     return user;
   } finally {
-    await client.close();
+   // await client.close();
   }
 }
 
 // method to update user details
 export async function updateUserDetails(prevState: any, formData: any) {
   try {
-    await client.connect();
+    //await client.connect();
 
     let newData: any = {
       firstName: formData.get("firstName"),
@@ -71,14 +71,14 @@ export async function updateUserDetails(prevState: any, formData: any) {
       message: "User details updated successfully",
     };
   } finally {
-    await client.close();
+   // await client.close();
   }
 }
 
 // function for user to add a new property
 export async function addProperty(formData: any) {
   try {
-    await client.connect();
+    //await client.connect();
 
     const userAddress: { name: string; value: string } | any = await getCookie(
       "wallet-address"
@@ -104,7 +104,7 @@ export async function addProperty(formData: any) {
       message: "Property added successfully",
     };
   } finally {
-    await client.close();
+   // await client.close();
   }
 }
 

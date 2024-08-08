@@ -16,7 +16,7 @@ export async function signUpUser(prevState: any, formData: any) {
       };
     }
     // Connect the client to the server (optional starting in v4.7)
-    await client.connect();
+    //await client.connect();
 
     const data = {
       firstName: formData.get("firstName"),
@@ -56,7 +56,7 @@ export async function signUpUser(prevState: any, formData: any) {
     // Returning the result of the insertion
     return redirect("/home");
   } finally {
-    await client.close();
+   // await client.close();
   }
 }
 
@@ -73,7 +73,7 @@ export async function signInUser(prevState: any, formData: any) {
       };
     }
     // Connect the client to the server (optional starting in v4.7)
-    await client.connect();
+    //await client.connect();
 
     // Check if wallet address exists
     const user = await client
@@ -94,7 +94,7 @@ export async function signInUser(prevState: any, formData: any) {
     return redirect("/home");
   } finally {
     // Ensures that the client will close when you finish/error
-    await client.close();
+   // await client.close();
   }
 }
 
