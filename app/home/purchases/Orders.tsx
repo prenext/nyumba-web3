@@ -46,35 +46,8 @@ const orders = [
     invoice: "INV-1229",
     status: "Cancelled",
   },
-  {
-    name: "Ciaran Murray",
-    email: "ciaran.murray@email.com",
-    date: "Feb 3, 2023",
-    invoice: "INV-1232",
-    status: "Refunded",
-  },
-  {
-    name: "Maria Macdonald",
-    email: "maria.mc@email.com",
-    date: "Feb 3, 2023",
-    invoice: "INV-1231",
-    status: "Refunded",
-  },
-  {
-    name: "Charles Fulton",
-    email: "fulton@email.com",
-    date: "Feb 3, 2023",
-    invoice: "INV-1230",
-    status: "Cancelled",
-  },
-  {
-    name: "Jay Hooper",
-    email: "hooper@email.com",
-    date: "Feb 3, 2023",
-    invoice: "INV-1229",
-    status: "Cancelled",
-  },
 ];
+
 
 const OrderItem = ({ order }: { order: any }) => (
   <ListItem alignItems="flex-start">

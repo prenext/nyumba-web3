@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import PropTypes from "prop-types";
 import { useFormStatus } from "react-dom";
 
-const SubmitButton = ({ children, sx, ...props }: any) => {
+const SubmitButton = ({ children, sx, disabled, ...props }: any) => {
   const { pending } = useFormStatus();
   return (
     <Button
@@ -11,8 +11,8 @@ const SubmitButton = ({ children, sx, ...props }: any) => {
       fullWidth
       variant="contained"
       sx={{ mt: 3, mb: 2, ...sx }}
+      disabled={pending || disabled}
       {...props}
-      disabled={pending}
     >
       {pending ? "submitting..." : children}
     </Button>

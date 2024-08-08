@@ -5,11 +5,17 @@ import { useFormState } from "react-dom";
 import { updateUserDetails } from "@/app/actions";
 import { toast } from "react-toastify";
 import SubmitButton from "@/app/(pages)/widgets/SubmitButton";
+import AvatarUpload from "@/components/AvatarUpload";
 
 interface User {
   firstName: string;
   lastName: string;
   email: string;
+  walletAddress: string;
+  avatar: {
+    url: string;
+    id: string;
+  };
 }
 
 interface UserFormProps {
@@ -27,7 +33,21 @@ const UserDataForm: React.FC<UserFormProps> = ({ user }) => {
 
   return (
     <form action={action}>
-      <Grid container spacing={2} sx={{ marginTop: 2 }}>
+      <AvatarUpload
+        defaultAvatarSrc={user?.avatar?.url}
+        label={""}
+        name={"avatar"}
+      />
+      {/* text field with wallet address */}
+      <TextField
+        label="Wallet Address"
+        value={user?.walletAddress}
+        fullWidth
+        variant="outlined"
+        disabled
+        sx={{ marginBottom: 2 }}
+      ></TextField>
+      <Grid container spacing={2} >
         <Grid item xs={12} sm={6}>
           <TextField
             defaultValue={user?.firstName}

@@ -6,13 +6,10 @@ import ListSubheader from "@mui/material/ListSubheader";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PeopleIcon from "@mui/icons-material/People";
-import BarChartIcon from "@mui/icons-material/BarChart";
-import LayersIcon from "@mui/icons-material/Layers";
 import AccountIcon from "@mui/icons-material/AccountCircle";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import Link from "next/link";
 import HomeIcon from "@mui/icons-material/Home";
-import ApartmentIcon from "@mui/icons-material/Apartment";
 import BusinessIcon from "@mui/icons-material/Business";
 import HotelIcon from "@mui/icons-material/Hotel";
 
@@ -26,12 +23,17 @@ const iconMapping = {
 const links = [
   { name: "My Properties", icon: <DashboardIcon />, href: "/home" },
   { name: "Customers", icon: <PeopleIcon />, href: "/home/customers" },
+  { name: "Purchases", icon: <ShoppingCartIcon />, href: "/home/purchases" },
   { name: "Account", icon: <AccountIcon />, href: "/home/account" },
 ];
 
 const savedReports = [
   { name: "Buy Land", icon: iconMapping["Buy Land"], href: "/home/lands" },
-  { name: "Lease Land", icon: iconMapping["Lease Land"], href: "/home/lease-lands" },
+  {
+    name: "Lease Land",
+    icon: iconMapping["Lease Land"],
+    href: "/home/lease-lands",
+  },
   {
     name: "Real Estate",
     icon: iconMapping["Real Estate"],

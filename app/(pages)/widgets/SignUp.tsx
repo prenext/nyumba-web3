@@ -109,9 +109,9 @@ export default function SignUp() {
                   <Typography variant="body1">
                     Connected Account: {walletAddress}
                   </Typography>
-                  {/* <Typography variant="body1">
+                  <Typography variant="body1">
                     Balance: {walletBalance} ETH
-                  </Typography> */}
+                  </Typography>
                   <Button
                     fullWidth
                     variant="outlined"

@@ -1,3 +1,5 @@
+import Web3 from "web3";
+
 declare global {
   interface Window {
     ethereum: any;
@@ -17,7 +19,6 @@ export const connectWallet = async (
         method: "eth_requestAccounts",
       });
       setWalletAddress(accounts[0]);
-      console.log(accounts[0]);
       await getWalletBalance(accounts[0], setWalletBalance);
     } catch (err: any) {
       console.error(err.message);
@@ -77,22 +78,40 @@ export const disconnectWallet = (
   console.log("Wallet disconnected");
 };
 
-const getWalletBalance = async (
+export const getWalletBalance = async (
   walletAddress: string,
   setWalletBalance: SetWalletBalance
 ): Promise<void> => {
   if (typeof window !== "undefined" && typeof window.ethereum !== "undefined") {
     try {
-      const balance = await window.ethereum.request({
-        method: "eth_getBalance",
-        params: [walletAddress, "latest"],
-      });
-      //@ts-ignore
-      const balanceInEther = window.web3.utils.fromWei(balance, "ether");
-      setWalletBalance(balanceInEther);
-      console.log(`Balance: ${balanceInEther} ETH`);
+      const web3 = new Web3(window.ethereum);
+      const balance: string = (await web3.eth.getBalance(walletAddress)).toString();
+      // console.log(balance);
+      setWalletBalance(balance);
     } catch (err: any) {
       console.error(err.message);
     }
   }
+};
+
+
+// Function to fetch the ETH/USD exchange rate
+const fetchEthToUsdRate = async (): Promise<number> => {
+  try {
+    const response = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd");
+    const data = await response.json();
+    return data.ethereum.usd;
+  } catch (error) {
+    console.error("Failed to fetch ETH/USD rate:", error);
+    return 0; // Default to 0 if there's an error
+  }
+};
+
+// Function to format the balance to dollars
+export const formatBalance = async (balance: string): Promise<string> => {
+  const web3 = new Web3();
+  const etherBalance = web3.utils.fromWei(balance, "ether");
+  const ethToUsdRate = await fetchEthToUsdRate();
+  const dollarBalance = parseFloat(etherBalance) * ethToUsdRate;
+  return dollarBalance.toFixed(2);
 };

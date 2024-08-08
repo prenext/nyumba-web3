@@ -56,6 +56,7 @@ export default function Sidebar({ open, toggleDrawer, user }: DrawerProps) {
       <Toolbar
         sx={{
           display: "flex",
+          zIndex: 100,
           alignItems: "center",
           justifyContent: "space-between",
           px: [1],

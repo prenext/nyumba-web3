@@ -29,7 +29,7 @@ export default function DashboardLayout({
 
   return (
     <>
-      <Box sx={{ display: "flex" }}>
+      <Box sx={{ display: "flex", height: "100vh", overflow: "hidden" }}>
         <AppBar user={user} open={open} toggleDrawer={toggleDrawer} />
         <Sidebar user={user} open={open} toggleDrawer={toggleDrawer} />
         <Box
@@ -40,7 +40,6 @@ export default function DashboardLayout({
                 ? theme.palette.grey[100]
                 : theme.palette.grey[900],
             flexGrow: 1,
-            height: "100vh",
             overflow: "auto",
             pt: "64px",
           }}

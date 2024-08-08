@@ -1,53 +1,91 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Container,
   Grid,
-  Typography,
-  TextField,
   Button,
-  Card,
-  CardContent,
-  CardMedia,
+  Stepper,
+  Step,
+  StepLabel,
 } from "@mui/material";
+import Step1 from "./widgets/Basic";
+import Step4 from "./widgets/Documents";
+import Step2And3 from "./widgets/Info";
+import SubmitButton from "@/app/(pages)/widgets/SubmitButton";
+import { useFormState } from "react-dom";
+import { addProperty } from "./action";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
-const TwoSidedLayout = () => {
+const steps = ["Details & Price", "Images & Location ", "Documentation"];
+
+const AddPropertyPage: React.FC = () => {
+  const [activeStep, setActiveStep] = useState(0);
+  const [state, action] = useFormState(addProperty, null);
+  const [formKey, setFormKey] = useState(0);
+  const router = useRouter();
+
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  useEffect(() => {
+    if (state?.success) {
+      toast.success(state?.message);
+      if (activeStep === steps.length - 1) {
+        setActiveStep(0);
+        setFormKey((prev) => prev + 1);
+        router.push("/home");
+      }
+      handleNext();
+    } else toast.error(state?.message);
+  }, [state]);
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
   return (
-    <Box sx={{ paddingY: 4, paddingX: 2 }}>
-      <Container maxWidth="sm">
-        <form>
+    <Box sx={{ paddingY: 4, paddingX: 2, height: "100%" }}>
+      <Container
+        maxWidth="md"
+        sx={{ display: "flex", flexDirection: "column", height: "100%" }}
+      >
+        <Stepper activeStep={activeStep} sx={{ marginBottom: 4 }}>
+          {steps.map((label) => (
+            <Step key={label}>
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+        <Box
+          component="form"
+          key={formKey}
+          action={action}
+          style={{ display: "flex", flexDirection: "column", height: "100%" }}
+        >
           <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField name="title" label="Title" fullWidth required />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                name="description"
-                label="Description"
-                fullWidth
-                required
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField name="price" label="Price" fullWidth required />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField name="location" label="Location" fullWidth required />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField name="image" label="Image URL" fullWidth required />
-            </Grid>
-            <Grid item xs={12}>
-              <Button type="submit" variant="contained" color="primary">
-                Add Property
-              </Button>
-            </Grid>
+            <Step1 required={activeStep === 0} hidden={activeStep !== 0} />
+            <Step2And3 required={activeStep === 1} hidden={activeStep !== 1} />
+            <Step4 required={activeStep === 2} hidden={activeStep !== 2} />
           </Grid>
-        </form>
+          <Box flexGrow={1} />
+          <input type="hidden" name="currentStep" value={activeStep} />
+          <Grid item xs={6}>
+            {activeStep > 0 && (
+              <Button onClick={handleBack} sx={{ marginLeft: 2 }}>
+                Back
+              </Button>
+            )}
+            <SubmitButton>
+              {activeStep === steps.length - 1 ? "Submit" : "Next"}
+            </SubmitButton>
+          </Grid>
+        </Box>
       </Container>
     </Box>
   );
 };
 
-export default TwoSidedLayout;
+export default AddPropertyPage;

@@ -25,38 +25,7 @@ const AccountPage = async () => {
       maxWidth="sm"
     >
       <Box display="flex" flexDirection="column" alignItems="center">
-        <Avatar
-          src={user?.avatar}
-          alt={user?.firstName}
-          sx={{
-            width: 100,
-            height: 100,
-            marginBottom: 4,
-            position: "relative",
-            border: "4px solid",
-          }}
-        >
-          <CameraAltIcon
-            sx={{
-              position: "absolute",
-              bottom: 0,
-              right: 0,
-              backgroundColor: "background.paper",
-              borderRadius: "50%",
-              padding: 0.5,
-              boxShadow: 1,
-            }}
-          />
-        </Avatar>
-        {/* text field with wallet address */}
-        <TextField
-          label="Wallet Address"
-          value={user?.walletAddress}
-          fullWidth
-          variant="outlined"
-          disabled
-          sx={{ marginBottom: 2 }}
-        ></TextField>
+      
         <UserDataForm user={user} />
       </Box>
     </Container>
