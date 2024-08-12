@@ -26,10 +26,10 @@ const HomeSearch = () => {
     >
       <Box textAlign="center" mb={4}>
         <Typography variant="h3" gutterBottom>
-          Let&apos;s find a home that&apos;s perfect for you
+          Nyumba Blockchain, Housing Made Easier
         </Typography>
         <Typography variant="subtitle1" gutterBottom>
-          Search confidently with your trusted source of homes for sale or rent.
+          Search confidently with your trusted source for properties using blockchain technology
         </Typography>
       </Box>
       <Box display="flex" justifyContent="center" mb={4} width="80%">
@@ -63,7 +63,7 @@ const HomeSearch = () => {
       </Box>
       <Box textAlign="center" mb={4}>
         <Typography variant="subtitle1">
-          Trusted by 20,000+ companies
+          Find real estates, rentals, land and lease lands
         </Typography>
       </Box>
       {/* <Grid container spacing={4} justifyContent="center" alignItems="center">

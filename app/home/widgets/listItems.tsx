@@ -23,23 +23,31 @@ const iconMapping = {
 const links = [
   { name: "My Properties", icon: <DashboardIcon />, href: "/home" },
   { name: "Customers", icon: <PeopleIcon />, href: "/home/customers" },
-  { name: "Purchases", icon: <ShoppingCartIcon />, href: "/home/purchases" },
+  { name: "Requested", icon: <ShoppingCartIcon />, href: "/home/requested" },
   { name: "Account", icon: <AccountIcon />, href: "/home/account" },
 ];
 
 const savedReports = [
-  { name: "Buy Land", icon: iconMapping["Buy Land"], href: "/home/lands" },
+  {
+    name: "Buy Land",
+    icon: iconMapping["Buy Land"],
+    href: "/home/properties/land",
+  },
   {
     name: "Lease Land",
     icon: iconMapping["Lease Land"],
-    href: "/home/lease-lands",
+    href: "/home/properties/lease-land",
   },
   {
     name: "Real Estate",
     icon: iconMapping["Real Estate"],
-    href: "/home/real-estate",
+    href: "/home/properties/real-estate",
   },
-  { name: "Rental", icon: iconMapping["Rental"], href: "/home/rental" },
+  {
+    name: "Rental",
+    icon: iconMapping["Rental"],
+    href: "/home/properties/rental",
+  },
 ];
 
 const RenderList = ({

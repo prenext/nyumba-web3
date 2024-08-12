@@ -9,7 +9,6 @@ const Footer = () => {
       sx={{
         backgroundColor: "primary.main",
         pt: 10,
-        mt: 10,
         width: "100%",
         color: "white",
         display: "flex",
@@ -47,17 +46,19 @@ const Footer = () => {
           </Box>
           <Box>
             <Typography variant="h6" gutterBottom>
-              Services
+              Security
             </Typography>
-            <Typography variant="body2">Email Marketing</Typography>
-            <Typography variant="body2">Campaigns</Typography>
+            <Typography variant="body2">Secure Transfer</Typography>
+            <Typography variant="body2">Web3 Wallets</Typography>
           </Box>
           <Box>
             <Typography variant="h6" gutterBottom>
-              About
+              Blockchain
             </Typography>
-            <Typography variant="body2">Our Story</Typography>
-            <Typography variant="body2">Benefits</Typography>
+            <Typography variant="body2"> Tokenisation of Assets</Typography>
+            <Typography variant="body2">
+              Internet Identity
+            </Typography>
           </Box>
           <Box>
             <Typography variant="h6" gutterBottom>

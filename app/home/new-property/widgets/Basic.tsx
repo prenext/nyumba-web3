@@ -48,7 +48,7 @@ const Step1: React.FC<{
           >
             <MenuItem value="land">Land</MenuItem>
             <MenuItem value="lease-land">Lease Land</MenuItem>
-            <MenuItem value="reale-state">Real Estate</MenuItem>
+            <MenuItem value="real-estate">Real Estate</MenuItem>
             <MenuItem value="rental">Rental</MenuItem>
           </Select>
         </FormControl>

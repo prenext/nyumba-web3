@@ -9,11 +9,26 @@ import {
 } from "@mui/material";
 import PropertyCard from "@/components/PropertyCard";
 import SearchForm from "@/components/SearchForm";
-import { getPropertiesByType } from "../action";
+import { getPropertiesByType } from "../../action";
+import { Console } from "console";
 
-const LandsPage = async () => {
-  const data: any = await getPropertiesByType("rental");
-  // console.log(data);
+const LandsPage = async ({
+  params: { type },
+}: {
+  params: { type: string };
+}) => {
+  const response: any = await fetch(
+    `http://localhost:3000/api/properties/${type}`,
+    {
+      cache: "no-store",
+    }
+  );
+
+  if (!response.ok) {
+    return <Typography variant="h6">Error fetching properties</Typography>;
+  }
+
+  const data = await response.json();
 
   return (
     <div>

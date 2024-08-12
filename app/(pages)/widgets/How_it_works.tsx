@@ -7,30 +7,21 @@ const How_it_works = () => {
       <Grid container spacing={4} alignItems="center">
         <Grid item xs={12} md={6}>
           <Typography variant="h3" gutterBottom>
-            Matic Architecture
+            Revenue and Market Potential
           </Typography>
           <Typography variant="body1" paragraph>
-            Matic Network solves the above problems by building a decentralized
-            platform using an adapted version of Plasma framework that provides
-            a solution for faster and extremely low cost transactions with
-            finality on a main chain.
+            Our focus is on tapping into the vast $1.5 trillion market within the real estate industry. This market is ripe with opportunities, offering immense potential for growth and expansion as we introduce innovative solutions that cater to the evolving needs of modern real estate transactions.
           </Typography>
           <Typography variant="body1" paragraph>
-            The system ensures liveliness using PoS checkpoints which are pushed
-            to the Ethereum mainchain. This enables Matic to theoretically
-            achieve 2^16 transactions per block on a single plasma chain, and
-            possibly millions of transactions on multiple chains in the future.
+            Our revenue model is strategically designed to capitalize on this opportunity through two primary channels: transaction fees and subscription services. By implementing a fee structure on each transaction facilitated by our platform, we ensure a steady revenue stream that scales with the volume of transactions. Additionally, subscription fees for our premium services provide a recurring revenue model, offering advanced features and exclusive benefits to our clients.
           </Typography>
-          <Button variant="contained" color="primary">
-            Read Whitepaper
-          </Button>
         </Grid>
         <Grid item xs={12} md={6}>
           {/* Placeholder for the illustration */}
           <Box display="flex" justifyContent="center">
             <img
               src="https://i.pinimg.com/564x/f8/fe/41/f8fe41d415088e6701625c054606d143.jpg"
-              alt="Matic Architecture Illustration"
+              alt="Real Estate Market Analysis Illustration"
               style={{ maxWidth: "100%", height: "auto", borderRadius: "8px" }}
             />
           </Box>

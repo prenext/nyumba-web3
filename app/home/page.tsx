@@ -1,11 +1,29 @@
 import PropertyCard from "@/components/MyPropertyCard";
 import React from "react";
-import { getPropertiesByUserAddress } from "./action";
 import { Box, Grid } from "@mui/material";
 import Link from "next/link";
+import { getCookie } from "@/lib/utils/cookies.util";
 
 const PropertyList = async () => {
-  const data: any = await getPropertiesByUserAddress();
+  // Fetch properties from the API
+
+  const userAddress: { name: string; value: string } | any = await getCookie(
+    "wallet-address"
+  );
+
+  const response = await fetch("http://localhost:3000/api/properties", {
+    cache: "no-store",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${userAddress.value}`,
+    },
+  });
+
+  if (!response.ok) {
+    return <h1>Error fetching properties</h1>;
+  }
+
+  const data = await response.json();
 
   // null if data is not an array or empty
   if (data.length === 0) {

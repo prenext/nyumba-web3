@@ -8,7 +8,6 @@ import {
   ListItemText,
   ListItemIcon,
 } from "@mui/material";
-import ThreeSteps from "./Feat";
 
 const HowSection = () => {
   return (
@@ -82,7 +81,6 @@ const HowSection = () => {
           </Grid>
         </Grid>
       </Box>
-      <ThreeSteps />
     </>
   );
 };

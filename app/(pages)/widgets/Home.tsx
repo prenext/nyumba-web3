@@ -7,14 +7,14 @@ const Home = () => {
       <Grid container spacing={4} alignItems="center">
         <Grid item xs={12} md={6}>
           <Typography variant="h3" gutterBottom>
-            Scalable and instant blockchain transactions
+            The Problem We Address
           </Typography>
           <Typography variant="body1" paragraph>
-            Matic Network brings massive scale to Ethereum using an adapted version of Plasma with PoS based side chains.
+            The real estate industry is often plagued by inefficiencies, particularly when it comes to accessing reliable and up-to-date housing information. Traditional methods of searching for properties can be cumbersome, time-consuming, and lack transparency, leaving users frustrated and uncertain.
           </Typography>
-          <Button variant="contained" color="primary">
-            Read Whitepaper
-          </Button>
+          <Typography variant="body1" paragraph>
+            Our platform revolutionizes the property search process by leveraging cutting-edge blockchain technology. We provide a seamless and secure way for users to explore real estate options, ensuring that the information is not only accurate but also easily accessible. By integrating blockchain, we enhance the reliability of property data, eliminate intermediaries, and offer a more transparent and efficient solution for homebuyers and investors alike.
+          </Typography>
         </Grid>
         <Grid item xs={12} md={6}>
           {/* Placeholder for the illustration */}

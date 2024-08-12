@@ -6,20 +6,17 @@ import {
   Card,
   CardMedia,
   CardContent,
-  Button,
   Container,
 } from "@mui/material";
 
-const PropertyCard = ({
+const HowItWorksCard = ({
   image,
   title,
   description,
-  propertiesCount,
 }: {
   image: string;
   title: string;
   description: string;
-  propertiesCount: string;
 }) => {
   return (
     <Card
@@ -54,36 +51,33 @@ const PropertyCard = ({
             {description}
           </Typography>
         </Box>
-        <Box mt={2}>
-          <Button variant="outlined">{propertiesCount} properties</Button>
-        </Box>
       </CardContent>
     </Card>
   );
 };
 
-const PropertiesSection = () => {
-  const properties = [
+const HowItWorksSection = () => {
+  const features = [
     {
       image:
         "https://i.pinimg.com/564x/5e/2a/dd/5e2add23445c93e82fc9acf028eeff19.jpg",
-      title: "Enjoy the great cold",
-      description: "",
-      propertiesCount: "6,872",
+      title: "Decentralization",
+      description:
+        "Our platform is built on a decentralized network, ensuring that no single entity has control over the entire system. This approach enhances security, transparency, and trust among all users.",
     },
     {
       image:
         "https://i.pinimg.com/564x/50/e8/d8/50e8d88544815ccc12b1650c8860830a.jpg",
-      title: "Pick up the earliest sunrise",
-      description: "",
-      propertiesCount: "6,872",
+      title: "Tokenization",
+      description:
+        "We utilize tokenization to represent real estate assets on the blockchain. This process allows properties to be divided into digital tokens, making it easier to buy, sell, and trade fractions of real estate.",
     },
     {
       image:
         "https://i.pinimg.com/564x/bb/d8/f8/bbd8f8060eedf24f2184d4d34bf2f08f.jpg",
-      title: "Unique stay",
-      description: "",
-      propertiesCount: "6,872",
+      title: "Smart Contracts",
+      description:
+        "Smart contracts automate property management tasks, such as rental agreements and payments. These contracts are self-executing, ensuring that all parties meet their obligations without the need for intermediaries.",
     },
   ];
 
@@ -96,30 +90,28 @@ const PropertiesSection = () => {
         py: 15,
         backgroundColor: "#F5EBDC",
       }}
-
     >
-      <Container  maxWidth="xl">
-      <Typography variant="h4" gutterBottom>
-        Move to What Moves You
-      </Typography>
-      <Typography variant="subtitle1" gutterBottom>
-        Keep calm & travel on
-      </Typography>
-      <Grid container spacing={4} justifyContent="center">
-        {properties.map((property, index) => (
-          <Grid item xs={12} md={4} key={index}>
-            <PropertyCard
-              image={property.image}
-              title={property.title}
-              description={property.description}
-              propertiesCount={property.propertiesCount}
-            />
-          </Grid>
-        ))}
-      </Grid>
+      <Container maxWidth="xl">
+        <Typography variant="h4" gutterBottom>
+          How it Works
+        </Typography>
+        <Typography variant="subtitle1" sx={{mb: 4}} gutterBottom>
+          Discover the power of blockchain in real estate
+        </Typography>
+        <Grid container spacing={4} justifyContent="center">
+          {features.map((feature, index) => (
+            <Grid item xs={12} md={4} key={index}>
+              <HowItWorksCard
+                image={feature.image}
+                title={feature.title}
+                description={feature.description}
+              />
+            </Grid>
+          ))}
+        </Grid>
       </Container>
     </Box>
   );
 };
 
-export default PropertiesSection;
+export default HowItWorksSection;

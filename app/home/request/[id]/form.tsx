@@ -15,6 +15,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useFormState } from "react-dom";
 import { requestProperty } from "./action";
 import SubmitButton from "@/app/(pages)/widgets/SubmitButton";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 interface Property {
   _id: string;
@@ -46,6 +48,16 @@ const ConfirmationPage: React.FC<ConfirmationPageProps> = ({ property }) => {
   const isOwner = property.isOwner;
 
   const [state, action] = useFormState(requestProperty, null);
+  const router = useRouter();
+
+  React.useEffect(() => {
+    if (state?.success) {
+      toast.success("Property requested successfully");
+      router.push("/home/requested");
+    } else if (state?.message) {
+      toast.error(state?.message);
+    }
+  }, [state]);
 
   return (
     <Box sx={{ padding: 3 }} component="form" action={action}>
@@ -69,14 +81,23 @@ const ConfirmationPage: React.FC<ConfirmationPageProps> = ({ property }) => {
           <Typography variant="h6" color="text.primary">
             Price: ${property.price}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Location: Latitude {property?.location?.latitude}, Longitude{" "}
-            {property.location.longitude}
-          </Typography>
           <Typography variant="h6" sx={{ mt: 2 }}>
             Do you want to request this property?
           </Typography>
         </CardContent>
+        {/* hidden inputs for the form */}
+        <input type="hidden" name="propertyId" value={property._id} />
+        <input
+          type="hidden"
+          name="ownerAddress"
+          value={property.ownerAddress}
+        />
+        <input type="hidden" name="requestedBy" value={property.myAddress} />
+        <input
+          type="hidden"
+          name="propertyType"
+          value={property.propertyType}
+        />
         <CardActions>
           <Box
             sx={{

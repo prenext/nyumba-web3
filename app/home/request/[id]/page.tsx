@@ -1,15 +1,33 @@
 import { Box } from "@mui/material";
-import { getPropertyById } from "./action";
 import ConfirmationPage from "./form";
+import { getCookie } from "@/lib/utils/cookies.util";
 
 export default async function RequestPage({
   params: { id },
 }: {
   params: { id: string };
 }) {
-  const data: any = await getPropertyById(id);
+  const userAddress: { name: string; value: string } | any = await getCookie(
+    "wallet-address"
+  );
 
-  console.log(data);
+  const response = await fetch(
+    `http://localhost:3000/api/properties/view/${id}`,
+    {
+      cache: "no-store",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userAddress.value}`,
+      },
+    }
+  );
+
+  if (!response.ok) {
+    return <h1>Error fetching property</h1>;
+  }
+
+  const data = await response.json();
+
   return (
     <Box p={2}>
       {data ? <ConfirmationPage property={data} /> : <>Not Found</>}
