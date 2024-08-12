@@ -18,10 +18,9 @@ export async function GET(
     .findOne({ _id: new ObjectId(id) });
 
   if (!property) {
-    return {
-      success: false,
-      message: "Property not found.",
-    };
+    return new Response(JSON.stringify({ message: "Property not found" }), {
+      status: 404,
+    });
   }
 
   // Fetch the owner details

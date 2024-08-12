@@ -43,11 +43,11 @@ const NavBar: React.FC<Props> = () => {
             />
           </Link>
           <Box sx={globalStyles.navLinks}>
-            <Link href="/home">
+            <a href="/home">
               <Button variant="text" color="primary">
                 Dashboard
               </Button>
-            </Link>
+            </a>
             <Link href="/properties">
               <Button variant="text" color="primary">
                 Properties
@@ -68,12 +68,17 @@ const NavBar: React.FC<Props> = () => {
             }}
           >
             <a href="/?showAuthDialog=true&initialPage=sign-in">
-              <Button sx={{px: 2}} variant="outlined" color="primary">
+              <Button sx={{ px: 2 }} variant="outlined" color="primary">
                 Sign In
               </Button>
             </a>
             <a href="/?showAuthDialog=true&initialPage=sign-up">
-              <Button sx={{px: 2}} variant="contained" size="small" color="primary">
+              <Button
+                sx={{ px: 2 }}
+                variant="contained"
+                size="small"
+                color="primary"
+              >
                 Sign Up
               </Button>
             </a>
