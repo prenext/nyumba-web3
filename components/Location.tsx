@@ -155,7 +155,7 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({
             border: "1px solid",
             borderColor: "background.default",
             width: "100%",
-            height: "400px",
+            height: 200,
             m: 0,
             p: 0,
             overflow: "hidden",

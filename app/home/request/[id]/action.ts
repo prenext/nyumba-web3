@@ -36,10 +36,10 @@ export async function requestProperty(prevState: any, formData: any) {
   // Check if the user is the owner of the property
   const isOwner = userAddress.value === property.ownerAddress;
 
-  if (!isOwner) {
+  if (isOwner) {
     return {
       success: false,
-      message: "You are not authorized to request this property.",
+      message: "You cannot request your own property.",
     };
   }
 

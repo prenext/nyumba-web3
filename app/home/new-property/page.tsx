@@ -11,14 +11,15 @@ import {
 } from "@mui/material";
 import Step1 from "./widgets/Basic";
 import Step4 from "./widgets/Documents";
-import Step2And3 from "./widgets/Info";
+import Step2 from "./widgets/Info";
+import Step3 from "./widgets/Location";
 import SubmitButton from "@/app/(pages)/widgets/SubmitButton";
 import { useFormState } from "react-dom";
 import { addProperty } from "./action";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
-const steps = ["Details & Price", "Images & Location ", "Documentation"];
+const steps = ["Details", "Images", "Location ", "Documents"];
 
 const AddPropertyPage: React.FC = () => {
   const [activeStep, setActiveStep] = useState(0);
@@ -67,8 +68,9 @@ const AddPropertyPage: React.FC = () => {
         >
           <Grid container spacing={2}>
             <Step1 required={activeStep === 0} hidden={activeStep !== 0} />
-            <Step2And3 required={activeStep === 1} hidden={activeStep !== 1} />
-            <Step4 required={activeStep === 2} hidden={activeStep !== 2} />
+            <Step2 required={activeStep === 1} hidden={activeStep !== 1} />
+            <Step3 required={activeStep === 2} hidden={activeStep !== 2} />
+            <Step4 required={activeStep === 3} hidden={activeStep !== 3} />
           </Grid>
           <Box flexGrow={1} />
           <input type="hidden" name="currentStep" value={activeStep} />

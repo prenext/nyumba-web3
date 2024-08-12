@@ -69,7 +69,7 @@ export default function Sidebar({ open, toggleDrawer, user }: DrawerProps) {
             style={{
               marginTop: 6,
             }}
-            src="nyumba-logo.svg"
+            src="/nyumba-logo.svg"
             alt="Nyumba Logo"
           />
         </Link>

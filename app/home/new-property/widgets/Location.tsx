@@ -3,7 +3,7 @@ import { Box, Grid, TextField } from "@mui/material";
 import MultiFileUpload from "@/components/FileUpload";
 import LocationSelector from "@/components/Location";
 
-const Step2: React.FC<{
+const Step3: React.FC<{
   hidden: boolean;
   required: boolean;
 }> = ({ hidden, required }) => {
@@ -23,15 +23,15 @@ const Step2: React.FC<{
           maxWidth: "sm",
         }}
       >
-        <MultiFileUpload label={"Upload Property Images"} name={"images"} />
-        {/* <LocationSelector
+        {/* <MultiFileUpload label={"Uplaod Images"} name={"images"} /> */}
+        <LocationSelector
           name={"location"}
           label={"Property Location"}
           formState={undefined}
-        /> */}
+        />
       </Box>
     </>
   );
 };
 
-export default Step2;
+export default Step3;

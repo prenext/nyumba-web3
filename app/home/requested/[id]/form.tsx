@@ -7,13 +7,11 @@ import {
   Typography,
   Button,
   Box,
-  CircularProgress,
-  CardActions,
 } from "@mui/material";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useFormState } from "react-dom";
-import { requestProperty } from "./action";
+// import { requestProperty } from "./action";
 import SubmitButton from "@/app/(pages)/widgets/SubmitButton";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
@@ -21,7 +19,7 @@ import { useRouter } from "next/navigation";
 interface Property {
   _id: string;
   title: string;
-  description: string;
+  description: string; // Ensure you have this field if it exists
   price: number;
   propertyType: string;
   images: { url: string; id: string }[];
@@ -41,23 +39,45 @@ interface Property {
 }
 
 interface ConfirmationPageProps {
+  request: {
+    _id: string;
+    propertyId: string;
+    ownerAddress: string;
+    propertyType: string;
+    status: string;
+    requestedAt: string;
+  };
+  owner: {
+    _id: string;
+    firstName: string;
+    lastName: string;
+    avatar: { url: string; id: string };
+  };
   property: Property;
 }
 
-const ConfirmationPage: React.FC<ConfirmationPageProps> = ({ property }) => {
+const ConfirmationPage: React.FC<ConfirmationPageProps> = ({
+  request,
+  owner,
+  property,
+}) => {
   const isOwner = property.isOwner;
-
-  const [state, action] = useFormState(requestProperty, null);
+  const [state, action] = useFormState(() => {}, null);
   const router = useRouter();
 
-  React.useEffect(() => {
-    if (state?.success) {
-      toast.success("Property requested successfully");
-      router.push("/home/requested");
-    } else if (state?.message) {
-      toast.error(state?.message);
-    }
-  }, [state]);
+//   React.useEffect(() => {
+//     if (state?.success) {
+//       toast.success("Property requested successfully");
+//       router.push("/home/requested");
+//     } else if (state?.message) {
+//       toast.error(state?.message);
+//     }
+//   }, [state]);
+
+  const handlePayment = () => {
+    // Implement your payment logic here
+    console.log("Payment button clicked");
+  };
 
   return (
     <Box component="form" action={action}>
@@ -86,7 +106,7 @@ const ConfirmationPage: React.FC<ConfirmationPageProps> = ({ property }) => {
             Price: ${property.price}
           </Typography>
           <Typography variant="h6" sx={{ mt: 2 }}>
-            Do you want to request this property?
+            Do you want to pay for this property?
           </Typography>
           {/* hidden inputs for the form */}
           <input type="hidden" name="propertyId" value={property._id} />
@@ -108,17 +128,23 @@ const ConfirmationPage: React.FC<ConfirmationPageProps> = ({ property }) => {
               width: "100%",
             }}
           >
-            <SubmitButton
-              // disabled={isOwner}
-              sx={{
-                bgcolor: isOwner ? "gray" : "primary.main",
-                "&:hover": {
-                  bgcolor: isOwner ? "gray" : "primary.dark",
-                },
-              }}
-            >
-              {isOwner ? "Cannot Request Own Property" : "Confirm"}
-            </SubmitButton>
+            {!isOwner && (
+              <SubmitButton
+                // @ts-ignore
+                color="secondary"
+              >
+                Make Payment
+              </SubmitButton>
+            )}
+            {isOwner && (
+              <Button
+                // @ts-ignore
+                disabled
+                color="primary"
+              >
+                Cannot Pay for Own Property
+              </Button>
+            )}
           </Box>
         </CardContent>
       </Card>
