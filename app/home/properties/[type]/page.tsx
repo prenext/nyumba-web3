@@ -10,6 +10,7 @@ import {
 import PropertyCard from "@/components/PropertyCard";
 import SearchForm from "@/components/SearchForm";
 import { Console } from "console";
+import { API_URL } from "@/app/url";
 
 const LandsPage = async ({
   params: { type },
@@ -17,7 +18,7 @@ const LandsPage = async ({
   params: { type: string };
 }) => {
   const response: any = await fetch(
-    `http://localhost:3000/api/properties/${type}`,
+    `${API_URL}/properties/${type}`,
     {
       cache: "no-store",
     }

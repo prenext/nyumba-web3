@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import ConfirmationPage from "./form";
 import { getCookie } from "@/lib/utils/cookies.util";
+import { API_URL } from "@/app/url";
 
 export default async function RequestPage({
   params: { id },
@@ -11,7 +12,7 @@ export default async function RequestPage({
     "wallet-address"
   );
 
-  const response = await fetch(`http://localhost:3000/api/requests/${id}`, {
+  const response = await fetch(`${API_URL}/requests/${id}`, {
     cache: "no-store",
     headers: {
       "Content-Type": "application/json",
