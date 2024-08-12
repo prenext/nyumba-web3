@@ -2,13 +2,14 @@ import React from "react";
 import { Container, Box, List, Divider } from "@mui/material";
 import CustomerItem from "./Item";
 import { getCookie } from "@/lib/utils/cookies.util";
+import { API_URL } from "@/app/url";
 
 const CustomersPage = async () => {
   const userAddress: { value: string; name: string } | any = await getCookie(
     "wallet-address"
   );
 
-  const response = await fetch("http://localhost:3000/api/customers", {
+  const response = await fetch(`${API_URL}` + "/customers", {
     cache: "no-store",
     headers: {
       "Content-Type": "application/json",

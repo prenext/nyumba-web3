@@ -3,6 +3,7 @@ import React from "react";
 import { Box, Grid } from "@mui/material";
 import Link from "next/link";
 import { getCookie } from "@/lib/utils/cookies.util";
+import { API_URL } from "@/app/url";
 
 const PropertyList = async () => {
   // Fetch properties from the API
@@ -11,7 +12,7 @@ const PropertyList = async () => {
     "wallet-address"
   );
 
-  const response = await fetch("http://localhost:3000/api/properties", {
+  const response = await fetch(`${API_URL}` + "/properties", {
     cache: "no-store",
     headers: {
       "Content-Type": "application/json",
