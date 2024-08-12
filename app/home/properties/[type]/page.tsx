@@ -9,7 +9,6 @@ import {
 } from "@mui/material";
 import PropertyCard from "@/components/PropertyCard";
 import SearchForm from "@/components/SearchForm";
-import { getPropertiesByType } from "../../action";
 import { Console } from "console";
 
 const LandsPage = async ({
