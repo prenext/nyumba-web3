@@ -22,10 +22,7 @@ export async function GET(
   const requestDoc = await client
     .db(DATABASE_NAME)
     .collection("requests")
-    .findOne(
-      { _id: new ObjectId(id), requestedBy: userAddress },
-      { projection: { requestedBy: 0 } } // Exclude requestedBy from the response
-    );
+    .findOne({ _id: new ObjectId(id), requestedBy: userAddress });
 
   if (!requestDoc) {
     return new Response(
@@ -57,6 +54,8 @@ export async function GET(
           price: 1,
           images: 1,
           title: 1,
+          ownerAddress: 1,
+          description: 1,
         },
       }
     );
@@ -65,7 +64,7 @@ export async function GET(
   const enhancedResponse = {
     request: requestDoc,
     owner,
-    property
+    property,
   };
 
   return new Response(JSON.stringify(enhancedResponse), {

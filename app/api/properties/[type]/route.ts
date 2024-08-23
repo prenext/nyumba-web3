@@ -13,7 +13,7 @@ export async function GET(
   const properties = await client
     .db(DATABASE_NAME)
     .collection("properties")
-    .find({ propertyType })
+    .find({ propertyType, status: "listed" }) // Fetch only listed properties
     .toArray();
 
   // Fetch user data for each property
@@ -30,6 +30,7 @@ export async function GET(
       return { ...property, owner: user || {} };
     })
   );
+
 
   // Return response
   return new Response(JSON.stringify(propertiesWithUserData), {

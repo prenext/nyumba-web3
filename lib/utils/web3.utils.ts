@@ -96,7 +96,7 @@ export const getWalletBalance = async (
 
 
 // Function to fetch the ETH/USD exchange rate
-const fetchEthToUsdRate = async (): Promise<number> => {
+export const fetchEthToUsdRate = async (): Promise<number> => {
   try {
     const response = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd");
     const data = await response.json();

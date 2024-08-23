@@ -11,15 +11,17 @@ import {
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useFormState } from "react-dom";
-// import { requestProperty } from "./action";
 import SubmitButton from "@/app/(pages)/widgets/SubmitButton";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import Web3 from "web3";
+import { makePayment } from "@/lib/utils/pay.util";
+import { fetchEthToUsdRate } from "@/lib/utils/web3.utils";
 
 interface Property {
   _id: string;
   title: string;
-  description: string; // Ensure you have this field if it exists
+  description: string;
   price: number;
   propertyType: string;
   images: { url: string; id: string }[];
@@ -31,7 +33,6 @@ interface Property {
     avatar: { url: string; id: string };
   };
   isOwner: boolean;
-  myAddress: string;
   location: {
     latitude: number;
     longitude: number;
@@ -44,6 +45,7 @@ interface ConfirmationPageProps {
     propertyId: string;
     ownerAddress: string;
     propertyType: string;
+    requestedBy: string;
     status: string;
     requestedAt: string;
   };
@@ -65,19 +67,38 @@ const ConfirmationPage: React.FC<ConfirmationPageProps> = ({
   const [state, action] = useFormState(() => {}, null);
   const router = useRouter();
 
-//   React.useEffect(() => {
-//     if (state?.success) {
-//       toast.success("Property requested successfully");
-//       router.push("/home/requested");
-//     } else if (state?.message) {
-//       toast.error(state?.message);
-//     }
-//   }, [state]);
+  console.log("Request:", request);
+  console.log("Owner:", owner); 
+  console.log("Property:", property);
 
-  const handlePayment = () => {
-    // Implement your payment logic here
-    console.log("Payment button clicked");
+  const handlePayment = async () => {
+    try {
+      // Fetch the current ETH/USD exchange rate (or SFuel/USD)
+      const ethToUsdRate = await fetchEthToUsdRate();
+
+      // Convert the property price (in USD) to Ether (or SFuel)
+      const priceInEth = (property.price / ethToUsdRate).toFixed(18);
+
+      // Execute payment using the converted price
+      const paymentResult = await makePayment({
+        sender: request.requestedBy, 
+        receiver: property.ownerAddress, // Property owner's address
+        amount: priceInEth,
+      });
+
+      if (paymentResult.success) {
+        toast.success("Payment successful!");
+        console.log("Transaction Hash:", paymentResult.transactionHash);
+        router.push("/home/success"); // Redirect or handle success
+      } else {
+        toast.error(paymentResult.message);
+      }
+    } catch (error) {
+      console.error("Payment failed:", error);
+      toast.error("Payment failed. Please try again.");
+    }
   };
+
 
   return (
     <Box component="form" action={action}>
@@ -115,7 +136,7 @@ const ConfirmationPage: React.FC<ConfirmationPageProps> = ({
             name="ownerAddress"
             value={property.ownerAddress}
           />
-          <input type="hidden" name="requestedBy" value={property.myAddress} />
+          <input type="hidden" name="requestedBy" value={request.requestedBy} />
           <input
             type="hidden"
             name="propertyType"
@@ -129,12 +150,17 @@ const ConfirmationPage: React.FC<ConfirmationPageProps> = ({
             }}
           >
             {!isOwner && (
-              <SubmitButton
+              <Button
                 // @ts-ignore
                 color="secondary"
+                onClick={handlePayment}
+                variant="contained"
+                fullWidth
+                sx={{ mt: 2 }}
               >
                 Make Payment
-              </SubmitButton>
+
+              </Button>
             )}
             {isOwner && (
               <Button
