@@ -17,6 +17,7 @@ import { useRouter } from "next/navigation";
 import Web3 from "web3";
 import { makePayment } from "@/lib/utils/pay.util";
 import { fetchEthToUsdRate } from "@/lib/utils/web3.utils";
+import { buyProperty } from "./action";
 
 interface Property {
   _id: string;
@@ -64,12 +65,7 @@ const ConfirmationPage: React.FC<ConfirmationPageProps> = ({
   property,
 }) => {
   const isOwner = property.isOwner;
-  const [state, action] = useFormState(() => {}, null);
   const router = useRouter();
-
-  console.log("Request:", request);
-  console.log("Owner:", owner); 
-  console.log("Property:", property);
 
   const handlePayment = async () => {
     try {
@@ -81,15 +77,19 @@ const ConfirmationPage: React.FC<ConfirmationPageProps> = ({
 
       // Execute payment using the converted price
       const paymentResult = await makePayment({
-        sender: request.requestedBy, 
+        sender: request.requestedBy,
         receiver: property.ownerAddress, // Property owner's address
         amount: priceInEth,
       });
 
       if (paymentResult.success) {
         toast.success("Payment successful!");
+        await buyProperty({
+          propertyId: property._id,
+          requestId: request._id,
+          amount: property.price,
+        });
         console.log("Transaction Hash:", paymentResult.transactionHash);
-        router.push("/home/success"); // Redirect or handle success
       } else {
         toast.error(paymentResult.message);
       }
@@ -99,9 +99,8 @@ const ConfirmationPage: React.FC<ConfirmationPageProps> = ({
     }
   };
 
-
   return (
-    <Box component="form" action={action}>
+    <Box component="form">
       <Card sx={{ maxWidth: 600, margin: "auto" }}>
         <CardMedia>
           <Carousel showThumbs={false}>
@@ -149,7 +148,21 @@ const ConfirmationPage: React.FC<ConfirmationPageProps> = ({
               width: "100%",
             }}
           >
-            {!isOwner && (
+            {!isOwner && request.status !== "approved" && (
+              <Button
+                // @ts-ignore
+                color="secondary"
+                onClick={handlePayment}
+                variant="contained"
+                fullWidth
+                sx={{ mt: 2 }}
+                disabled
+              >
+                Property Not Approved Yet - Cannot Pay
+              </Button>
+            )}
+
+            {!isOwner && request.status === "approved" && (
               <Button
                 // @ts-ignore
                 color="secondary"
@@ -159,7 +172,6 @@ const ConfirmationPage: React.FC<ConfirmationPageProps> = ({
                 sx={{ mt: 2 }}
               >
                 Make Payment
-
               </Button>
             )}
             {isOwner && (

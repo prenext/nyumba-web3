@@ -23,8 +23,6 @@ const RequestsPage = async () => {
 
   const customers: any = await response.json();
 
-  console.log(customers);
-
   return (
     <Container maxWidth="md">
       <Box mt={1}>

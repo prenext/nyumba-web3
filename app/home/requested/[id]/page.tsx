@@ -29,8 +29,6 @@ export default async function RequestPage({
 
   const data = await response.json();
 
-  console.log(data);
-
   return (
     <Box p={2}>
       {data ? (

@@ -85,7 +85,9 @@ const RequestItem = ({ request }: { request: any }) => {
           <Box mr={1}>
             <Link href={`/home/requested/${request._id}`}>
             <Button variant="contained" aria-label="accept">
-              <Typography variant="body2">View</Typography>
+              <Typography variant="body2">{
+                property.status === "approved" ? "View" : "Pay"
+                }</Typography>
             </Button>
             </Link>
           </Box>

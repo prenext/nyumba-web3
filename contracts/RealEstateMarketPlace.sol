@@ -38,6 +38,7 @@ contract RealEstateMarketPlace {
         uint256 price,
         uint256 rent
     );
+    
     event PropertySold(uint256 propertyId, address buyer, uint256 price);
     event PropertyRented(uint256 propertyId, address tenant, uint256 rent);
     event UserRegistered(uint256 userId, address walletAddress);
